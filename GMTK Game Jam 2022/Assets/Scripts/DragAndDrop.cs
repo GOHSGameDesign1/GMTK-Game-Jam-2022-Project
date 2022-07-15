@@ -9,7 +9,9 @@ public class DragAndDrop : MonoBehaviour
     private InputAction mouseClick;
 
     private Vector2 velocity = Vector2.zero;
-    public float mousDragSpeed;
+    public float mouseDragSpeed;
+
+    private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
 
     private void OnEnable()
@@ -47,12 +49,20 @@ public class DragAndDrop : MonoBehaviour
 
     IEnumerator DragUpdate(GameObject clickedObject)
     {
+        //float initial
+        clickedObject.TryGetComponent<Rigidbody2D>(out var rb);
+        clickedObject.TryGetComponent<IDrag>(out var IDragCompenent);
+        IDragCompenent?.OnStartDrag();
         while(mouseClick.ReadValue<float>() != 0)
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            clickedObject.transform.position = Vector2.SmoothDamp(clickedObject.transform.position, ray.origin, ref velocity, mousDragSpeed);
-            yield return null;
+            Vector2 direction = ray.origin - clickedObject.transform.position;
+            rb.velocity = direction * mouseDragSpeed;
+            //clickedObject.transform.position = Vector2.SmoothDamp(clickedObject.transform.position, ray.origin, ref velocity, mouseDragSpeed);
+
+            yield return waitForFixedUpdate;
 
         }
+        IDragCompenent?.OnEndDrag();
     }
 }
