@@ -14,10 +14,7 @@ public class DiceRandomizer : MonoBehaviour
 
     int randomNumber;
 
-    void Start()
-    {
 
-    }
 
     void RollTheDice()
     {
