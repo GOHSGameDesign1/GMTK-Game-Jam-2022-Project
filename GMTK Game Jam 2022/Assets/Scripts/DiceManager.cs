@@ -10,6 +10,11 @@ public class DiceManager : MonoBehaviour, IDrag
 
     public Rigidbody2D rb;
     Vector2 velocity = Vector2.zero;
+
+    public Sprite[] diceSprites;
+    public int diceValue;
+    private GameObject diceDisplay;
+
     public void OnEndDrag()
     {
         Debug.Log("Ended Dragging");
@@ -32,12 +37,13 @@ public class DiceManager : MonoBehaviour, IDrag
     void Start()
     {
         canAttach = false;
+        diceDisplay = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        diceDisplay.GetComponent<SpriteRenderer>().sprite = diceSprites[diceValue];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
