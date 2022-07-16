@@ -43,7 +43,7 @@ public class ReceiverManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("collideRIGREWR");
-        if (collision.gameObject.tag == "Draggable")
+        if (collision.gameObject.tag == "Draggable" && currentDiceAttached == null)
         {
             currentDiceAttached = collision.gameObject;
         }
@@ -51,7 +51,7 @@ public class ReceiverManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Draggable")
+        if (collision.gameObject.tag == "Draggable" && attached == false)
         {
             currentDiceAttached = null;
         }
