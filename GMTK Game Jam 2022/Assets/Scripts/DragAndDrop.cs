@@ -13,6 +13,8 @@ public class DragAndDrop : MonoBehaviour
 
     private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
+    public static int orderLayer;
+
 
     private void OnEnable()
     {
@@ -28,7 +30,7 @@ public class DragAndDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        orderLayer = 0;
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class DragAndDrop : MonoBehaviour
 
     void MousePressed(InputAction.CallbackContext context)
     {
+        orderLayer += 2;
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
         if (hit.collider != null && hit.collider.tag == "Draggable")
@@ -49,7 +52,7 @@ public class DragAndDrop : MonoBehaviour
 
     IEnumerator DragUpdate(GameObject clickedObject)
     {
-        //float initial
+
         clickedObject.TryGetComponent<Rigidbody2D>(out var rb);
         clickedObject.TryGetComponent<IDrag>(out var IDragCompenent);
         IDragCompenent?.OnStartDrag();

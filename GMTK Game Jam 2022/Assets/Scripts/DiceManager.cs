@@ -20,8 +20,8 @@ public class DiceManager : MonoBehaviour, IDrag
     public void OnEndDrag()
     {
 
-        diceBaseDisplay.sortingOrder = 0;
-        diceDisplay.sortingOrder = 1;
+        diceBaseDisplay.sortingOrder = 0 + DragAndDrop.orderLayer;
+        diceDisplay.sortingOrder = 1 + DragAndDrop.orderLayer;
 
         rb.velocity = Vector2.zero;
 
@@ -32,14 +32,24 @@ public class DiceManager : MonoBehaviour, IDrag
             currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
             attached = true;
         }
+
+        if(canAttach && currentReceiver.GetComponent<ReceiverManager>().attached)
+        {
+            rb.velocity = Vector2.zero;
+            Vector2 oldPosition = transform.position;
+            transform.position = currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached.transform.position;
+            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached.transform.position = oldPosition;
+            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
+            attached = true;
+        }
     }
 
     public void OnStartDrag()
     {
         attached = false;
 
-        diceBaseDisplay.sortingOrder = 2;
-        diceDisplay.sortingOrder = 3;
+        diceBaseDisplay.sortingOrder = 2 + DragAndDrop.orderLayer;
+        diceDisplay.sortingOrder = 3 + DragAndDrop.orderLayer;
     }
 
     // Start is called before the first frame update
