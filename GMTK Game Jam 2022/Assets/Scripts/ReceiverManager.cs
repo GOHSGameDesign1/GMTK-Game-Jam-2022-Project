@@ -22,10 +22,10 @@ public class ReceiverManager : MonoBehaviour
             attached = currentDiceAttached.GetComponent<DiceManager>().attached;
         }
 
-        if(attached == false)
+       /* if(attached == false)
         {
             currentDiceAttached = null;
-        }
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,6 +34,23 @@ public class ReceiverManager : MonoBehaviour
         if(collision.gameObject.tag == "Draggable")
         {
             currentDiceAttached = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("collideRIGREWR");
+        if (collision.gameObject.tag == "Draggable")
+        {
+            currentDiceAttached = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Draggable")
+        {
+            currentDiceAttached = null;
         }
     }
 

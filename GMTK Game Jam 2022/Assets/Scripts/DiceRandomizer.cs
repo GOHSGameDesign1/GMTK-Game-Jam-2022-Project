@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
 
@@ -21,7 +20,7 @@ public class DiceRandomizer : MonoBehaviour
 
     void RollTheDice()
     {
-        randomNumber = int i in Enumerable.Range(1,6);
+        randomNumber = Random.Range(1,6);
     }
 
 }

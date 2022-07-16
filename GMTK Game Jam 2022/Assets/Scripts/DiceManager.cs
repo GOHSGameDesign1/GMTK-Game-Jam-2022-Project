@@ -26,7 +26,7 @@ public class DiceManager : MonoBehaviour, IDrag
         {
             rb.velocity = Vector2.zero;
             transform.position = (Vector2)currentReceiver.transform.position;
-            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
+            // currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
             attached = true;
         }
     }
