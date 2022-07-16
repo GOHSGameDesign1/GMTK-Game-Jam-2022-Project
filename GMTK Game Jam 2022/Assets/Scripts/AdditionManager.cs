@@ -17,10 +17,17 @@ public class AdditionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(additionSlot1.GetComponent<ReceiverManager>().attached && additionSlot2.GetComponent<ReceiverManager>().attached)
+
+        Calculate(additionSlot1.GetComponent<ReceiverManager>(), additionSlot2.GetComponent<ReceiverManager>());
+
+    }
+
+    private void Calculate(ReceiverManager addition1, ReceiverManager addition2)
+    {
+        if(addition1.attached && addition2.attached)
         {
             float sum = additionSlot1.GetComponent<ReceiverManager>().diceValue + additionSlot2.GetComponent<ReceiverManager>().diceValue;
-            Debug.Log(sum);
+            
         }
     }
 }
