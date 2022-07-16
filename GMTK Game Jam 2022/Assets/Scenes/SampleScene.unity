@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice
       objectReference: {fileID: 0}
-    - target: {fileID: 2716209853550068016, guid: f9b64b1df2f011349a36e855e0e65ade, type: 3}
-      propertyPath: diceValue
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2716209853550068017, guid: f9b64b1df2f011349a36e855e0e65ade, type: 3}
       propertyPath: m_RootOrder
       value: 7
