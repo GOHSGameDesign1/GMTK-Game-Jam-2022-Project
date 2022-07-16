@@ -20,6 +20,9 @@ public class ReceiverManager : MonoBehaviour
         {
             diceValue = currentDiceAttached.GetComponent<DiceManager>().diceValue + 1;
             attached = currentDiceAttached.GetComponent<DiceManager>().attached;
+        } else
+        {
+            attached=false;
         }
 
        /* if(attached == false)
