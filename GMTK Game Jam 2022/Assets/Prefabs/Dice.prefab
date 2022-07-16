@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttach: 0
+  attached: 0
   rb: {fileID: 2716209853550068019}
   diceSprites:
   - {fileID: 21300000, guid: 269c69d9588a3a64faa288a8fb19e710, type: 3}
@@ -144,7 +145,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2716209853550068012}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

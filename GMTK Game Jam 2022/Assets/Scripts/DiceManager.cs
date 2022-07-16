@@ -6,10 +6,11 @@ public class DiceManager : MonoBehaviour, IDrag
 {
     [SerializeField]
     private bool canAttach;
-    private GameObject currentReciever;
+    public bool attached;
+    public GameObject currentReceiver;
 
     public Rigidbody2D rb;
-    Vector2 velocity = Vector2.zero;
+    Vector2 velocity;
 
     public Sprite[] diceSprites;
     public int diceValue;
@@ -19,17 +20,20 @@ public class DiceManager : MonoBehaviour, IDrag
     {
         Debug.Log("Ended Dragging");
 
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref velocity, 0.01f);
+        rb.velocity = Vector2.zero;
 
         if (canAttach)
         {
             rb.velocity = Vector2.zero;
-            transform.position = currentReciever.transform.position;
+            transform.position = (Vector2)currentReceiver.transform.position;
+            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
+            attached = true;
         }
     }
 
     public void OnStartDrag()
     {
+        attached = false;
         Debug.Log("Started Dragging");
     }
 
@@ -48,11 +52,15 @@ public class DiceManager : MonoBehaviour, IDrag
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if(collision.gameObject.tag == "Reciever")
-        //{
-            canAttach = true;
-            currentReciever = collision.gameObject;
-       // }
+        if(collision.gameObject.tag == "Reciever")
+        {
+            currentReceiver = collision.gameObject;
+
+            if (!currentReceiver.GetComponent<ReceiverManager>().attached)
+            {
+                canAttach = true;
+            }
+       }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
