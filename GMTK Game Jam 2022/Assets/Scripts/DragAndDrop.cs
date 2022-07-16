@@ -41,7 +41,7 @@ public class DragAndDrop : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.tag == "Draggable")
         {
             StartCoroutine(DragUpdate(hit.collider.gameObject));
         }
