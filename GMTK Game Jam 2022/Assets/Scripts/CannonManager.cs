@@ -12,6 +12,7 @@ public class CannonManager : MonoBehaviour
     public GameObject diceSlot;
     public GameObject bulletPrefab;
     private Transform firePoint;
+    private SpriteRenderer barrelRenderer;
 
     [SerializeField]
     private InputAction fire;
@@ -51,10 +52,31 @@ public class CannonManager : MonoBehaviour
         diceSlot.TryGetComponent<ReceiverManager>(out var receiverManager);
         if (receiverManager.attached)
         {
+            StartCoroutine(squish());
             currentDiceValue = receiverManager.diceValue;
             receiverManager.attached = false;
             Destroy(receiverManager.currentDiceAttached);
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         }
+    }
+
+    IEnumerator squish()
+    {
+        Vector3 velocity = Vector2.zero;
+        while (barrel.transform.localScale.x >= 0.301f)
+        {
+            //barrel.transform.localScale -= new Vector3(0.1f, 0, 0) * Time.deltaTime;
+            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.06f);
+            yield return null;
+        }
+
+        while(barrel.transform.localScale.x <= 0.599f)
+        {
+            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.6f, 1, 1), ref velocity, 0.1f);
+            yield return null;
+        }
+
+        barrel.transform.localScale = new Vector3(0.6f, 1, 1);
+
     }
 }
