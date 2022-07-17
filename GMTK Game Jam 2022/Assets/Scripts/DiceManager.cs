@@ -20,8 +20,8 @@ public class DiceManager : MonoBehaviour, IDrag
     public void OnEndDrag()
     {
 
-        diceBaseDisplay.sortingOrder = 0 + DragAndDrop.orderLayer;
-        diceDisplay.sortingOrder = 1 + DragAndDrop.orderLayer;
+        diceBaseDisplay.sortingOrder = 2 + DragAndDrop.orderLayer;
+        diceDisplay.sortingOrder = 3 + DragAndDrop.orderLayer;
 
         rb.velocity = Vector2.zero;
 
@@ -48,8 +48,8 @@ public class DiceManager : MonoBehaviour, IDrag
     {
         attached = false;
 
-        diceBaseDisplay.sortingOrder = 2 + DragAndDrop.orderLayer;
-        diceDisplay.sortingOrder = 3 + DragAndDrop.orderLayer;
+        diceBaseDisplay.sortingOrder = 10 + DragAndDrop.orderLayer;
+        diceDisplay.sortingOrder = 11 + DragAndDrop.orderLayer;
     }
 
     // Start is called before the first frame update

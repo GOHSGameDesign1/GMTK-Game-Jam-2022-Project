@@ -14,6 +14,8 @@ public class BulletManager : MonoBehaviour
     private Vector2 direction;
     private Vector2 mousePos;
     private Rigidbody2D rb;
+    public GameObject pointVFX;
+    GameObject currentspawnedpointVFX;
 
     public Sprite[] diceSprites;
 
@@ -28,6 +30,8 @@ public class BulletManager : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
 
+        currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position, Quaternion.identity);
+        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("-100");
         PointsManager.points -= 100;
     }
 
@@ -63,6 +67,8 @@ public class BulletManager : MonoBehaviour
 
                 if(enemy.maxHealth > 0)
                 {
+                    currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
+                    currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+50");
                     PointsManager.points += 50;
                 }
 

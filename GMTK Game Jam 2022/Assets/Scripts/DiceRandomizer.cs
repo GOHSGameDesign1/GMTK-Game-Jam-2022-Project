@@ -11,7 +11,11 @@ public class DiceRandomizer : MonoBehaviour
 {
     public GameObject dicePrefab;
     public GameObject[] spawnPoints;
+    [SerializeField]
+    public static List<GameObject> dice = new List<GameObject>();
+    [SerializeField]
     private GameObject[] spawnedDice = new GameObject[3];
+    private GameObject currentSpawnedDie;
     private int counter;
     bool canRoll;
 
@@ -31,34 +35,43 @@ public class DiceRandomizer : MonoBehaviour
         }
     }
 
-    void RollTheDice()
+    public void RerollDice()
     {
-        randomNumber = Random.Range(1, 6);
+        PointsManager.points -= 200;
+        RollDice();
     }
 
 
     public void RollDice()
     {
 
-
+        foreach(GameObject die in spawnedDice)
+        {
+           if(die != null)
+            {
+                Destroy(die);
+            }
+        }
         for (int i = 0; i < 3; i++)
         {
-            if (spawnedDice[i] != null)
-            {
-                Destroy(spawnedDice[i]);
-            }
-            spawnedDice[i] = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity);
+            currentSpawnedDie = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity);
+            spawnedDice[i] = currentSpawnedDie;
+            dice.Add(currentSpawnedDie);
         }
     }
 
     private void CheckIfRollable()
     {
         counter = 0;
-        if (spawnedDice[0] == null) counter++;
-        if (spawnedDice[1] == null) counter++;
-        if (spawnedDice[2] == null) counter++;
+            foreach (GameObject die in dice)
+            {
+                if (die != null)
+                {
+                    counter++;
+                }
+            }
 
-        if (counter >= 3)
+        if (counter == 0)
         {
             //Debug.Log("Use at least 2 dice first!");
             canRoll = true;

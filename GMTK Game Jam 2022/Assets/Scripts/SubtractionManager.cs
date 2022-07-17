@@ -43,10 +43,12 @@ public class SubtractionManager : MonoBehaviour
             {
                 currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output2.position, Quaternion.identity);
                 currentlySpawnedDice.GetComponent<DiceManager>().diceValue = 0;
+                DiceRandomizer.dice.Add(currentlySpawnedDice);
             } else
             {
                 currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
                 currentlySpawnedDice.GetComponent<DiceManager>().diceValue = (int)difference - 1;
+                DiceRandomizer.dice.Add(currentlySpawnedDice);
             }
         }
     }

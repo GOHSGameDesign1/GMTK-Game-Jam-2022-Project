@@ -45,11 +45,13 @@ public class AdditionManager : MonoBehaviour
                 {
                     currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output2.position, Quaternion.identity);
                     currentlySpawnedDice.GetComponent<DiceManager>().diceValue = 5;
+                    DiceRandomizer.dice.Add(currentlySpawnedDice);
                     sum -= 6;
                 } else
                 {
                     currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
                     currentlySpawnedDice.GetComponent<DiceManager>().diceValue = (int)sum - 1;
+                    DiceRandomizer.dice.Add(currentlySpawnedDice);
                     sum -= sum;
                 }
             }

@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
         if (canInstantiate)
         {
             currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
-            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue(200);
+            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
         }
         
     }

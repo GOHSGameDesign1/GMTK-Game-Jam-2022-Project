@@ -22,15 +22,15 @@ public class TextParticlesController : MonoBehaviour
         transform.Translate(transform.up * riseSpeed * Time.deltaTime);
         tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, Mathf.Lerp(tmp.color.a, 0, fadeAmount * Time.deltaTime));
 
-        if(tmp.color.a <= 0)
+        if(tmp.color.a <= 0.1)
         {
             Destroy(gameObject);
         }
     }
 
-    public void displayPointValue(float points)
+    public void displayPointValue(string points)
     {
-        tmp.text = new string("+" + points);
+        tmp.text = points;
     }
 
     private void OnApplicationQuit()
