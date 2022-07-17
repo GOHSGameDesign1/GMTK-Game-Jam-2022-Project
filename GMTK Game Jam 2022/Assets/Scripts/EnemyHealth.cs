@@ -11,10 +11,14 @@ public class EnemyHealth : MonoBehaviour
     public Sprite[] diceSprites;
     GameObject textObject;
     GameObject diceDisplayObject;
+    public GameObject pointVFX;
+    GameObject currentspawnedpointVFX;
+    bool canInstantiate;
     
     // Start is called before the first frame update
     void Start()
     {
+        canInstantiate = true;
         textObject = transform.GetChild(0).gameObject;
         diceDisplayObject = transform.GetChild(1).gameObject;
     }
@@ -34,5 +38,21 @@ public class EnemyHealth : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        PointsManager.points += 200;
+        if (canInstantiate)
+        {
+            currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
+            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue(200);
+        }
+        
+    }
+
+    private void OnApplicationQuit()
+    {
+        canInstantiate = false;
     }
 }

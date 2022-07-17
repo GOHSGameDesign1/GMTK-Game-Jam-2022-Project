@@ -344,6 +344,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a58ed60143a694ca362c95a515205c, type: 3}
   - {fileID: 21300000, guid: ac6a1a59aa6103045a8117c3e48f967d, type: 3}
   - {fileID: 21300000, guid: 780ae431fa156854983bdb273b21898e, type: 3}
+  pointVFX: {fileID: 2725617656621514401, guid: 897610f6e801cd648961c06d7a5b18ec, type: 3}
 --- !u!1 &7394046232259490162
 GameObject:
   m_ObjectHideFlags: 0

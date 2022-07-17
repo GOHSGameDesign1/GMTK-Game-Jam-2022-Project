@@ -33,6 +33,7 @@ public class AdditionManager : MonoBehaviour
     {
         if(addition1.attached && addition2.attached)
         {
+            PointsManager.points += 200;
             float sum = addition1.diceValue + addition2.diceValue;
 
             Destroy(addition1.currentDiceAttached);

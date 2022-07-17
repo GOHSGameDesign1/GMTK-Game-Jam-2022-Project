@@ -60,6 +60,12 @@ public class BulletManager : MonoBehaviour
             if (!enemy.diceDependant)
             {
                 enemy.maxHealth -= dmgValue;
+
+                if(enemy.maxHealth > 0)
+                {
+                    PointsManager.points += 50;
+                }
+
                 Destroy(gameObject);
                 return;
             }
@@ -71,4 +77,11 @@ public class BulletManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnDestroy()
+    {
+
+    }
+
 }
+
+ 

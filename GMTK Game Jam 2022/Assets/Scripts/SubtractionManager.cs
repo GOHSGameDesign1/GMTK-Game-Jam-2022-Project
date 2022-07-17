@@ -31,6 +31,7 @@ public class SubtractionManager : MonoBehaviour
     {
         if (sub1.attached && sub2.attached)
         {
+            PointsManager.points += 200;
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
 
             sub1.attached = false;
