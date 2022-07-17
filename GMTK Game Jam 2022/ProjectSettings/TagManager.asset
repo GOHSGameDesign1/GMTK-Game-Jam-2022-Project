@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Draggable
   - Reciever
+  - Enemy
   layers:
   - Default
   - TransparentFX

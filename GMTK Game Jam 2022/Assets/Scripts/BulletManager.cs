@@ -24,9 +24,11 @@ public class BulletManager : MonoBehaviour
         cannonManager = cannon.GetComponent<CannonManager>();
         dmgValue = (int)cannonManager.currentDiceValue;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        direction = mousePos - (Vector2)transform.position;
+        direction = mousePos - (Vector2)cannon.transform.position;
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
+
+        PointsManager.points -= 100;
     }
 
     // Update is called once per frame
@@ -53,6 +55,19 @@ public class BulletManager : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
+            collision.TryGetComponent<EnemyHealth>(out var enemy);
+
+            if (!enemy.diceDependant)
+            {
+                enemy.maxHealth -= dmgValue;
+                Destroy(gameObject);
+                return;
+            }
+            if(enemy.diceNumber + 1 != dmgValue)
+            {
+                return;
+            }
+            Destroy(enemy.gameObject);
             Destroy(gameObject);
         }
     }

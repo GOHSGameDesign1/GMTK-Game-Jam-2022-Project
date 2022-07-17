@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public bool diceDependant;
     public float maxHealth;
     public int diceNumber;
+    public Sprite[] diceSprites;
     GameObject textObject;
     GameObject diceDisplayObject;
     
@@ -24,6 +25,14 @@ public class EnemyHealth : MonoBehaviour
         textObject.SetActive(!diceDependant);
         diceDisplayObject.SetActive(diceDependant);
         textObject.GetComponent<TextMeshPro>().text = maxHealth.ToString();
-        diceDisplayObject.GetComponent<TextMeshPro>().text = new string(diceNumber.ToString() + "D");
+        diceDisplayObject.GetComponent<SpriteRenderer>().sprite = diceSprites[diceNumber];
+
+        if (!diceDependant)
+        {
+            if(maxHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
