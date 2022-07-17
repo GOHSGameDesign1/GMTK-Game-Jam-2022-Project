@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.ParticleSystemJobs;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject pointVFX;
     GameObject currentspawnedpointVFX;
     bool canInstantiate;
+    public ParticleSystem pSystem;
     
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class EnemyHealth : MonoBehaviour
         PointsManager.points += 200;
         if (canInstantiate)
         {
+            Instantiate(pSystem, transform.position, Quaternion.identity);
             currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
             currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
         }
