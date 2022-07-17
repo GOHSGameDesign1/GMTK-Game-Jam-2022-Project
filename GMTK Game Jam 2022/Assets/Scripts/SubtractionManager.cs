@@ -12,6 +12,10 @@ public class SubtractionManager : MonoBehaviour
     public GameObject dicePrefab;
     private GameObject currentlySpawnedDice;
 
+    public GameObject pointVFX;
+    GameObject currentspawnedpointVFX;
+    public Transform spawnVFXtransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +35,10 @@ public class SubtractionManager : MonoBehaviour
     {
         if (sub1.attached && sub2.attached)
         {
-            PointsManager.points += 200;
+            PointsManager.points += 300;
+            currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
+            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+300");
+
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
 
             sub1.attached = false;

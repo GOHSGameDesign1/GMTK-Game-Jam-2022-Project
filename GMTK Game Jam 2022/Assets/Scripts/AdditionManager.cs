@@ -12,6 +12,10 @@ public class AdditionManager : MonoBehaviour
     public GameObject dicePrefab;
     private GameObject currentlySpawnedDice;
 
+    public GameObject pointVFX;
+    GameObject currentspawnedpointVFX;
+    public Transform spawnVFXtransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,9 @@ public class AdditionManager : MonoBehaviour
         if(addition1.attached && addition2.attached)
         {
             PointsManager.points += 200;
+            currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
+            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
+
             float sum = addition1.diceValue + addition2.diceValue;
 
             Destroy(addition1.currentDiceAttached);

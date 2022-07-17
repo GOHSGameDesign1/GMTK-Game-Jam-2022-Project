@@ -19,6 +19,10 @@ public class DiceRandomizer : MonoBehaviour
     private int counter;
     bool canRoll;
 
+    public GameObject pointVFX;
+    GameObject currentspawnedpointVFX;
+    public Transform spawnVFXtransform;
+
     int randomNumber;
 
     private void Start()
@@ -37,7 +41,10 @@ public class DiceRandomizer : MonoBehaviour
 
     public void RerollDice()
     {
-        PointsManager.points -= 200;
+        PointsManager.points -= 300;
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
+        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("-300");
+
         RollDice();
     }
 
