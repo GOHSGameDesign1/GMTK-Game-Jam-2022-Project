@@ -5,13 +5,19 @@ using UnityEngine.InputSystem;
 
 public class CannonManager : MonoBehaviour
 {
+    [HideInInspector]
     Vector2 direction;
     Vector2 mousePos;
     public GameObject barrel;
     public GameObject diceSlot;
+    public GameObject bulletPrefab;
+    private Transform firePoint;
 
     [SerializeField]
     private InputAction fire;
+
+    [HideInInspector]
+    public float currentDiceValue;
 
     private void OnEnable()
     {
@@ -28,7 +34,7 @@ public class CannonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        firePoint = barrel.transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -45,9 +51,10 @@ public class CannonManager : MonoBehaviour
         diceSlot.TryGetComponent<ReceiverManager>(out var receiverManager);
         if (receiverManager.attached)
         {
+            currentDiceValue = receiverManager.diceValue;
             receiverManager.attached = false;
             Destroy(receiverManager.currentDiceAttached);
-            Debug.Log(receiverManager.diceValue);
+            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         }
     }
 }

@@ -59,11 +59,13 @@ public class DiceManager : MonoBehaviour, IDrag
         diceValue = Random.Range(0, 6);
         diceDisplay = transform.GetChild(0).GetComponent<SpriteRenderer>();
         diceBaseDisplay = gameObject.GetComponent<SpriteRenderer>();
+        diceDisplay.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        diceDisplay.enabled = true;
         diceDisplay.GetComponent<SpriteRenderer>().sprite = diceSprites[diceValue];
     }
 

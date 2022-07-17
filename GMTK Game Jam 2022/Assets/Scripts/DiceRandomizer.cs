@@ -12,21 +12,26 @@ public class DiceRandomizer : MonoBehaviour
     public GameObject dicePrefab;
     public GameObject[] spawnPoints;
     private GameObject[] spawnedDice = new GameObject[3];
+    private int counter;
 
     int randomNumber;
 
-
-
     void RollTheDice()
     {
-        randomNumber = Random.Range(1,6);
+        randomNumber = Random.Range(1, 6);
     }
 
     public void RollDice()
     {
-        if (spawnedDice[0] != null && spawnedDice[1] != null && spawnedDice[2] != null)
+        counter = 0;
+
+        if(spawnedDice[0] != null) counter++;
+        if(spawnedDice[1] != null) counter++;
+        if(spawnedDice[2] != null) counter++;
+
+        if (counter >= 2)
         {
-            Debug.Log("Use all first 3 dice first!");
+            Debug.Log("Use at least 2 dice first!");
             return;
         }
 
