@@ -15,6 +15,9 @@ public class DragAndDrop : MonoBehaviour
 
     public static int orderLayer;
 
+    public static bool isDragging;
+    public static GameObject draggedObject;
+
 
     private void OnEnable()
     {
@@ -31,12 +34,13 @@ public class DragAndDrop : MonoBehaviour
     void Start()
     {
         orderLayer = 0;
+        isDragging = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(isDragging);
     }
 
     void MousePressed(InputAction.CallbackContext context)
@@ -52,6 +56,9 @@ public class DragAndDrop : MonoBehaviour
 
     IEnumerator DragUpdate(GameObject clickedObject)
     {
+        
+        isDragging = true;
+        draggedObject = clickedObject;
 
         clickedObject.TryGetComponent<Rigidbody2D>(out var rb);
         clickedObject.TryGetComponent<IDrag>(out var IDragCompenent);
@@ -66,6 +73,7 @@ public class DragAndDrop : MonoBehaviour
             yield return waitForFixedUpdate;
 
         }
+        isDragging = false;
         IDragCompenent?.OnEndDrag();
     }
 }

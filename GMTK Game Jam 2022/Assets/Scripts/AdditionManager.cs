@@ -43,6 +43,7 @@ public class AdditionManager : MonoBehaviour
 
             float sum = addition1.diceValue + addition2.diceValue;
 
+            addition1.attached = false;
             Destroy(addition1.currentDiceAttached);
             Destroy(addition2.currentDiceAttached);
 

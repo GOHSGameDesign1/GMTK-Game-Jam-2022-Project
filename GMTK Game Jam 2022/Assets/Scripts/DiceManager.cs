@@ -36,11 +36,12 @@ public class DiceManager : MonoBehaviour, IDrag
         if(canAttach && currentReceiver.GetComponent<ReceiverManager>().attached)
         {
             rb.velocity = Vector2.zero;
-            Vector2 oldPosition = transform.position;
+            /*Vector2 oldPosition = transform.position;
             transform.position = currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached.transform.position;
-            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached.transform.position = oldPosition;
-            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
-            attached = true;
+            currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached.transform.position = (Vector2)currentReceiver.transform.position + new Vector2(0,2.5f);
+            //currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject;
+            attached = true;*/
+            StartCoroutine(Shake());
         }
     }
 
@@ -89,5 +90,11 @@ public class DiceManager : MonoBehaviour, IDrag
     private void OnDestroy()
     {
         attached = false;
+    }
+
+    IEnumerator Shake()
+    {
+        Debug.Log("Can't Place dice!");
+        yield return null;
     }
 }

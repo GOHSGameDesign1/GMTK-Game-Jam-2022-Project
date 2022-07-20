@@ -19,19 +19,23 @@ public class ReceiverManager : MonoBehaviour
         if(currentDiceAttached != null)
         {
             diceValue = currentDiceAttached.GetComponent<DiceManager>().diceValue + 1;
-            attached = currentDiceAttached.GetComponent<DiceManager>().attached;
+            //attached = currentDiceAttached.GetComponent<DiceManager>().attached;
         } else
         {
             attached=false;
         }
 
-       /* if(attached == false)
+        if(attached && DragAndDrop.isDragging)
         {
-            currentDiceAttached = null;
-        }*/
+            if(DragAndDrop.draggedObject == currentDiceAttached)
+            {
+                attached = false;
+                currentDiceAttached = null;
+            }
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collide");
         if(collision.gameObject.tag == "Draggable")
@@ -54,6 +58,24 @@ public class ReceiverManager : MonoBehaviour
         if (collision.gameObject.tag == "Draggable" && attached == false)
         {
             currentDiceAttached = null;
+        }
+    } */
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(attached == false)
+        {
+            if(DragAndDrop.isDragging == false) //check to see if dice was dropped into receiver
+            {
+                attached = true;
+                currentDiceAttached = collision.gameObject;
+            }
+        } else
+        {
+            if(currentDiceAttached != collision.gameObject && DragAndDrop.isDragging == false) //Check if a different dice was dropped into receiver. If so, replace currentDice
+            {
+               // currentDiceAttached = collision.gameObject;
+            }
         }
     }
 
