@@ -7,7 +7,6 @@ public class SubtractionManager : MonoBehaviour
     private GameObject subtractionSlot1;
     private GameObject subtractionSlot2;
     private Transform output1;
-    private Transform output2;
 
     public GameObject dicePrefab;
     private GameObject currentlySpawnedDice;
@@ -19,10 +18,9 @@ public class SubtractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        subtractionSlot1 = transform.GetChild(0).gameObject;
-        subtractionSlot2 = transform.GetChild(1).gameObject;
-        output1 = transform.GetChild(3);
-        output2 = transform.GetChild(4);
+        subtractionSlot1 = transform.GetChild(1).gameObject;
+        subtractionSlot2 = transform.GetChild(2).gameObject;
+        output1 = transform.GetChild(4);
     }
 
     // Update is called once per frame
@@ -35,9 +33,9 @@ public class SubtractionManager : MonoBehaviour
     {
         if (sub1.attached && sub2.attached)
         {
-            PointsManager.points += 300;
+            PointsManager.points += 350;
             currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
-            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+300");
+            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+350");
 
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
 
@@ -48,7 +46,7 @@ public class SubtractionManager : MonoBehaviour
 
             if(difference <= 0)
             {
-                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output2.position, Quaternion.identity);
+                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
                 currentlySpawnedDice.GetComponent<DiceManager>().diceValue = 0;
                 DiceRandomizer.dice.Add(currentlySpawnedDice);
             } else

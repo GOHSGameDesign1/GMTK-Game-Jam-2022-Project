@@ -67,8 +67,12 @@ public class ReceiverManager : MonoBehaviour
         {
             if(DragAndDrop.isDragging == false) //check to see if dice was dropped into receiver
             {
-                attached = true;
                 currentDiceAttached = collision.gameObject;
+                diceValue = currentDiceAttached.GetComponent<DiceManager>().diceValue + 1;
+                if (!currentDiceAttached.GetComponent<DiceManager>().shaking)
+                {
+                    attached = true;
+                }
             }
         } else
         {

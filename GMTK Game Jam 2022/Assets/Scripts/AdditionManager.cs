@@ -19,10 +19,10 @@ public class AdditionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        additionSlot1 = transform.GetChild(0).gameObject;
-        additionSlot2 = transform.GetChild(1).gameObject;
-        output1 = transform.GetChild(3);
-        output2 = transform.GetChild(4);
+        additionSlot1 = transform.GetChild(1).gameObject;
+        additionSlot2 = transform.GetChild(2).gameObject;
+        output1 = transform.GetChild(4);
+        output2 = transform.GetChild(5);
     }
 
     // Update is called once per frame
@@ -42,6 +42,7 @@ public class AdditionManager : MonoBehaviour
             currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
 
             float sum = addition1.diceValue + addition2.diceValue;
+            Debug.Log(sum);
 
             addition1.attached = false;
             Destroy(addition1.currentDiceAttached);
