@@ -10,6 +10,7 @@ public class DiceManager : MonoBehaviour, IDrag
     public GameObject currentReceiver;
 
     public Rigidbody2D rb;
+    public GameObject cannonReceiver;
 
 
     public Sprite[] diceSprites;
@@ -31,12 +32,13 @@ public class DiceManager : MonoBehaviour, IDrag
         {
             rb.velocity = Vector2.zero;
             transform.position = (Vector2)currentReceiver.transform.position;
+            return;
         }
 
         if(canAttach && currentReceiver.GetComponent<ReceiverManager>().attached)
         {
             rb.velocity = Vector2.zero;
-            StartCoroutine(Shake());
+            //StartCoroutine(Shake());
         }
     }
 
@@ -48,6 +50,11 @@ public class DiceManager : MonoBehaviour, IDrag
         diceDisplay.sortingOrder = 11 + DragAndDrop.orderLayer;
     }
 
+    public void OnRightClick()
+    {
+        transform.position = (Vector2)cannonReceiver.transform.position;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -57,6 +64,7 @@ public class DiceManager : MonoBehaviour, IDrag
         diceBaseDisplay = gameObject.GetComponent<SpriteRenderer>();
         diceDisplay.enabled = false;
         shaking = false;
+        cannonReceiver = GameObject.Find("Cannon Receiver");
 
         diceBaseDisplay.sortingOrder += DragAndDrop.orderLayer;
         diceDisplay.sortingOrder += DragAndDrop.orderLayer;
@@ -125,7 +133,7 @@ public class DiceManager : MonoBehaviour, IDrag
         Vector2 oldPosition = rb.position;
         for(int i = 0; i < 50; i++)
         {
-            rb.position += Random.insideUnitCircle.normalized * 0.03f;
+            rb.position += Random.insideUnitCircle.normalized * 0.025f;
             yield return new WaitForEndOfFrame();
         }
         shaking = false;

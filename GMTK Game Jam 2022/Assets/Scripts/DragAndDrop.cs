@@ -8,6 +8,9 @@ public class DragAndDrop : MonoBehaviour
     [SerializeField]
     private InputAction mouseClick;
 
+    [SerializeField]
+    private InputAction mouseRightClick;
+
     private Vector2 velocity = Vector2.zero;
     public float mouseDragSpeed;
 
@@ -23,12 +26,18 @@ public class DragAndDrop : MonoBehaviour
     {
         mouseClick.Enable();
         mouseClick.performed += MousePressed;
+
+        mouseRightClick.Enable();
+        mouseRightClick.performed += MouseRightPressed;
     }
 
     private void OnDisable()
     {
         mouseClick.performed -= MousePressed;
         mouseClick.Disable();
+
+        mouseRightClick.Disable();
+        mouseRightClick.performed -= MouseRightPressed;
     }
     // Start is called before the first frame update
     void Start()
@@ -75,5 +84,18 @@ public class DragAndDrop : MonoBehaviour
         }
         isDragging = false;
         IDragCompenent?.OnEndDrag();
+    }
+
+    void MouseRightPressed(InputAction.CallbackContext context) 
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
+
+        if (hit.collider != null && hit.collider.tag == "Draggable")
+        {
+            hit.collider.gameObject.TryGetComponent<DiceManager>(out var dice);
+            dice?.OnRightClick();
+        }
     }
 }

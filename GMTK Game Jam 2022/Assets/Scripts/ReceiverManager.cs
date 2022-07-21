@@ -35,35 +35,10 @@ public class ReceiverManager : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collide");
-        if(collision.gameObject.tag == "Draggable")
-        {
-            currentDiceAttached = collision.gameObject;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("collideRIGREWR");
-        if (collision.gameObject.tag == "Draggable" && currentDiceAttached == null)
-        {
-            currentDiceAttached = collision.gameObject;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Draggable" && attached == false)
-        {
-            currentDiceAttached = null;
-        }
-    } */
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(attached == false)
+        if(attached == false && collision.tag == "Draggable")
         {
             if(DragAndDrop.isDragging == false) //check to see if dice was dropped into receiver
             {

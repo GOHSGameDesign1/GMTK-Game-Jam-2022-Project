@@ -52,6 +52,7 @@ public class CannonManager : MonoBehaviour
         diceSlot.TryGetComponent<ReceiverManager>(out var receiverManager);
         if (receiverManager.attached)
         {
+            StopAllCoroutines();
             StartCoroutine(squish());
             currentDiceValue = receiverManager.diceValue;
             receiverManager.attached = false;

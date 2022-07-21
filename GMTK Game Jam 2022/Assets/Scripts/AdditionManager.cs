@@ -37,16 +37,23 @@ public class AdditionManager : MonoBehaviour
     {
         if(addition1.attached && addition2.attached)
         {
-            PointsManager.points += 200;
-            currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
-            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
 
             float sum = addition1.diceValue + addition2.diceValue;
             Debug.Log(sum);
 
+
+            if(addition1.diceValue == 6  || addition2.diceValue == 6)
+            {
+                SpawnPoints(0);
+            } else
+            {
+                SpawnPoints(200);
+            }
+
             addition1.attached = false;
             Destroy(addition1.currentDiceAttached);
             Destroy(addition2.currentDiceAttached);
+
 
             while(sum > 0)
             {
@@ -65,5 +72,12 @@ public class AdditionManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SpawnPoints(float pointValue)
+    {
+        PointsManager.points += pointValue;
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
+        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
     }
 }
