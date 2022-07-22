@@ -5,21 +5,33 @@ using UnityEngine;
 public class EnemySpawning : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public int maxHealthMin, maxHealthMax;
     public float spawnTimer;
     Vector2 screenBounds;
     private GameObject currentlySpawnedEnemy;
+    public float points2LvlUp;
+    private float pointsThreshold;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Spawn());
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        pointsThreshold = points2LvlUp;
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.Log(Screen.width + "..." + Screen.height);
+
+        if(PointsManager.points >= pointsThreshold)
+        {
+            pointsThreshold += points2LvlUp;
+            maxHealthMin++;
+            maxHealthMax++;
+
+        }
     }
 
     IEnumerator Spawn()
@@ -46,7 +58,7 @@ public class EnemySpawning : MonoBehaviour
         else
         {
             enemy.diceDependant = false;
-            enemy.maxHealth = Random.Range(3, 16);
+            enemy.maxHealth = Random.Range(maxHealthMin, maxHealthMax);
         }
     }
 }

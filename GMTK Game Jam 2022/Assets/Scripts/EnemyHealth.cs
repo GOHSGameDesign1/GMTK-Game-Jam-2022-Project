@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if(maxHealth <= 0)
             {
-                PointsManager.points += 200;
+                //PointsManager.points += 200;
                 Destroy(gameObject);
             }
         }
@@ -48,8 +48,8 @@ public class EnemyHealth : MonoBehaviour
         if (canInstantiate)
         {
             Instantiate(pSystem, transform.position, Quaternion.identity);
-            currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
-            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
+           // currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
+            //currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
         }
         
     }
