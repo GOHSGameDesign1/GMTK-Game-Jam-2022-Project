@@ -19,7 +19,7 @@ public class EnemySpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(Screen.width + "..." + Screen.height);
     }
 
     IEnumerator Spawn()

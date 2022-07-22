@@ -22,7 +22,7 @@ public class TextParticlesController : MonoBehaviour
         transform.Translate(transform.up * riseSpeed * Time.deltaTime);
         tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, Mathf.Lerp(tmp.color.a, 0, fadeAmount * Time.deltaTime));
 
-        if(tmp.color.a <= 0.1)
+        if(tmp.color.a <= 0.05)
         {
             Destroy(gameObject);
         }

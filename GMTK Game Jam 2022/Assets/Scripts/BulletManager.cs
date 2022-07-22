@@ -16,6 +16,8 @@ public class BulletManager : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject pointVFX;
     GameObject currentspawnedpointVFX;
+    public GameObject enemyTextVFX;
+    GameObject enemySpawnedpointVFX;
 
     public Sprite[] diceSprites;
 
@@ -33,6 +35,8 @@ public class BulletManager : MonoBehaviour
         currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position, Quaternion.identity);
         currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("-100");
         PointsManager.points -= 100;
+
+        StartCoroutine(LifetimeTimer());
     }
 
     // Update is called once per frame
@@ -77,6 +81,8 @@ public class BulletManager : MonoBehaviour
             }
             if(enemy.diceNumber + 1 != dmgValue)
             {
+                enemySpawnedpointVFX = Instantiate(enemyTextVFX, (Vector2)enemy.transform.position + new Vector2(0f,1f), Quaternion.identity);
+                enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs " + (enemy.diceNumber + 1) + "!");
                 return;
             }
             Destroy(enemy.gameObject);
@@ -86,6 +92,12 @@ public class BulletManager : MonoBehaviour
     private void OnDestroy()
     {
 
+    }
+
+    IEnumerator LifetimeTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 
 }

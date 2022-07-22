@@ -234,6 +234,7 @@ MonoBehaviour:
   dmgValue: 0
   bulletSpeed: 12
   pointVFX: {fileID: 2725617656621514401, guid: 897610f6e801cd648961c06d7a5b18ec, type: 3}
+  enemyTextVFX: {fileID: 4526757984259306220, guid: 7366701885b20d24e86efa0915e9f91a, type: 3}
   diceSprites:
   - {fileID: 21300000, guid: 269c69d9588a3a64faa288a8fb19e710, type: 3}
   - {fileID: 21300000, guid: 5ea6828e429a99949b4ede5ae3dacafc, type: 3}
