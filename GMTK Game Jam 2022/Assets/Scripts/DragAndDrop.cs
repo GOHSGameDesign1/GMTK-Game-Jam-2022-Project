@@ -74,9 +74,11 @@ public class DragAndDrop : MonoBehaviour
         IDragCompenent?.OnStartDrag();
         while(mouseClick.ReadValue<float>() != 0)
         {
+            
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Vector2 direction = ray.origin - clickedObject.transform.position;
-            rb.velocity = direction * mouseDragSpeed;
+            //rb.velocity = direction.normalized * mouseDragSpeed;
+            rb.position = Vector2.SmoothDamp(rb.position, ray.origin, ref velocity, 0.0001f);
             //clickedObject.transform.position = Vector2.SmoothDamp(clickedObject.transform.position, ray.origin, ref velocity, mouseDragSpeed);
 
             yield return waitForFixedUpdate;
@@ -89,13 +91,16 @@ public class DragAndDrop : MonoBehaviour
     void MouseRightPressed(InputAction.CallbackContext context) 
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-
-
-        if (hit.collider != null && hit.collider.tag == "Draggable")
+        if(Physics.SphereCast(ray, 2, out RaycastHit hit))
         {
-            hit.collider.gameObject.TryGetComponent<DiceManager>(out var dice);
-            dice?.OnRightClick();
+            if (hit.collider != null && hit.collider.tag == "Draggable")
+            {
+                hit.collider.gameObject.TryGetComponent<DiceManager>(out var dice);
+                dice?.OnRightClick();
+            }
         }
+
+
+
     }
 }

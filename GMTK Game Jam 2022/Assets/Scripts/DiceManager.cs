@@ -103,6 +103,19 @@ public class DiceManager : MonoBehaviour, IDrag
             currentReceiver = collision.gameObject;
             canAttach = true;
         }
+
+        /*if(collision.gameObject.tag == "Reciever" && !DragAndDrop.isDragging)
+        {
+            if (currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached != null)
+            {
+                if(currentReceiver.GetComponent<ReceiverManager>().currentDiceAttached = gameObject)
+                {
+                    rb.velocity = Vector2.zero;
+                    transform.position = (Vector2)currentReceiver.transform.position;
+                    return;
+                }
+            }
+        }*/
     }
 
     private void OnDestroy()
