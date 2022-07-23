@@ -4476,6 +4476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1059043657076156265, guid: 6847284d6f492634996b95f405ff090e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1059043657076156271, guid: 6847284d6f492634996b95f405ff090e, type: 3}
       propertyPath: m_RootOrder
       value: 2
