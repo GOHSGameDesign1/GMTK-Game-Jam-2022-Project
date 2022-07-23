@@ -78,7 +78,7 @@ public class DragAndDrop : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Vector2 direction = ray.origin - clickedObject.transform.position;
             //rb.velocity = direction.normalized * mouseDragSpeed;
-            rb.position = Vector2.SmoothDamp(rb.position, ray.origin, ref velocity, 0.0001f);
+            rb.position = Vector2.SmoothDamp(rb.position, ray.origin, ref velocity, 0.00001f);
             //clickedObject.transform.position = Vector2.SmoothDamp(clickedObject.transform.position, ray.origin, ref velocity, mouseDragSpeed);
 
             yield return waitForFixedUpdate;
