@@ -6,6 +6,7 @@ public class EnemySpawning : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject enemyBigPrefab;
+    public GameObject enemySplitPrefab;
     public int maxHealthMin, maxHealthMax;
     public float spawnTimer;
     Vector2 screenBounds;
@@ -45,17 +46,20 @@ public class EnemySpawning : MonoBehaviour
 
             if(PointsManager.points >= 1000)
             {
-                int determine = Random.Range(0, 3);
+                int determine = Random.Range(0, 4);
                 switch (determine)
                 {
                     case 0:
                         SpawnNormalEnemy();
                         break;
                     case 1:
-                        SpawnBigEnemy();
+                        SpawnNormalEnemy();
                         break;
                     case 2:
                         SpawnBigEnemy();
+                        break;
+                    case 3:
+                        SpawnSplitEnemy();
                         break;
                 }
                 continue;
@@ -88,5 +92,13 @@ public class EnemySpawning : MonoBehaviour
         currentlySpawnedEnemy.TryGetComponent<EnemyHealth>(out var enemy);
         enemy.diceDependant = false;
         enemy.maxHealth = Random.Range(maxHealthMax, maxHealthMax + 4);
+    }
+
+    void SpawnSplitEnemy()
+    {
+        GameObject currentlySpawnedEnemy = Instantiate(enemySplitPrefab, spawnPos, Quaternion.identity);
+        currentlySpawnedEnemy.TryGetComponent<EnemyHealth>(out var enemy);
+        enemy.diceDependant = true;
+        enemy.diceNumber = Random.Range(0, 6);
     }
 }
