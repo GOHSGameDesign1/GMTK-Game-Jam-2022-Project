@@ -52,7 +52,10 @@ public class DiceManager : MonoBehaviour, IDrag
 
     public void OnRightClick()
     {
-        transform.position = (Vector2)cannonReceiver.transform.position;
+        if (cannonReceiver.GetComponent<ReceiverManager>().attached == false)
+        {
+            transform.position = (Vector2)cannonReceiver.transform.position;
+        }
     }
 
     // Start is called before the first frame update

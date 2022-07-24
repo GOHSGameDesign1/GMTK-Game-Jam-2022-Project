@@ -982,7 +982,15 @@ MonoBehaviour:
     m_Id: bfe6e02a-ce0e-4678-8faf-0e48a3401c04
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2387a6ab-abe8-4394-a6a7-68e1c2e398ac
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Right Click
+      m_Flags: 0
     m_Flags: 0
   mouseDragSpeed: 65
 --- !u!4 &523264322 stripped
@@ -4635,9 +4643,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5699231457397002312, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
+      propertyPath: canSplit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699231457397002312, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
+      propertyPath: diceNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5699231457397002323, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
       propertyPath: m_Name
       value: Split Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699231457397002323, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5699231457397002325, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
       propertyPath: m_RootOrder

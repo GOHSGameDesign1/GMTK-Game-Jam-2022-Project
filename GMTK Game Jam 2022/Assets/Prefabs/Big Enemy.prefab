@@ -430,3 +430,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 780ae431fa156854983bdb273b21898e, type: 3}
   pointVFX: {fileID: 2725617656621514401, guid: 897610f6e801cd648961c06d7a5b18ec, type: 3}
   pSystem: {fileID: 2075385847236122752, guid: c8f38aad4c37d054e842898d1e2a42a0, type: 3}
+  splitEnemy: {fileID: 0}
+  pointsOnHit: 75
+  pointsOnKill: 300
+  canSplit: 0

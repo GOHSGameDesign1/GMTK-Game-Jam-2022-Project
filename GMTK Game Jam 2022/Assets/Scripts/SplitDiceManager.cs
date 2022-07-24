@@ -24,12 +24,6 @@ public class SplitDiceManager : MonoBehaviour
 
     public void checkForSplit()
     {
-        if (PointsManager.points > 100)
-        {
-            gameObject.SetActive(true);
-        } else
-        {
-            Destroy(gameObject);
-        }
+
     }
 }

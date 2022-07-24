@@ -44,7 +44,7 @@ public class EnemySpawning : MonoBehaviour
             spawnPos = new Vector2(screenBounds.x + 5, Random.Range(screenBounds.y - 1.2f, screenBounds.y * -1 + 6));
             yield return new WaitForSeconds(spawnTimer);
 
-            if(PointsManager.points >= 1000)
+            if(PointsManager.points >= 10000)
             {
                 int determine = Random.Range(0, 4);
                 switch (determine)
@@ -77,7 +77,7 @@ public class EnemySpawning : MonoBehaviour
         if(determine > 0)
         {
             enemy.diceDependant = true;
-            enemy.diceNumber = Random.Range(0, 6);
+            enemy.diceNumber = Random.Range(1, 7);
         }
         else
         {
@@ -96,9 +96,12 @@ public class EnemySpawning : MonoBehaviour
 
     void SpawnSplitEnemy()
     {
-        GameObject currentlySpawnedEnemy = Instantiate(enemySplitPrefab, spawnPos, Quaternion.identity);
+        Vector2 splitSpawnPos = new Vector2(screenBounds.x + 5, Random.Range(screenBounds.y - 2.2f, screenBounds.y * -1 + 7)); //new spawnPos so a split doesnt spawn offScreen
+        GameObject currentlySpawnedEnemy = Instantiate(enemySplitPrefab, splitSpawnPos, Quaternion.identity);
+
         currentlySpawnedEnemy.TryGetComponent<EnemyHealth>(out var enemy);
+        enemy.canSplit = true;
         enemy.diceDependant = true;
-        enemy.diceNumber = Random.Range(0, 6);
+        enemy.diceNumber = Random.Range(2, 7);
     }
 }

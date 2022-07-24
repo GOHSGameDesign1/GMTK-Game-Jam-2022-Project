@@ -71,7 +71,7 @@ public class BulletManager : MonoBehaviour
 
                 if(enemy.maxHealth > 0)
                 {
-                    SpawnPoints(50);
+                    SpawnPoints(enemy.pointsOnHit);
                     Destroy(gameObject);
                     return;
                 }
@@ -80,14 +80,14 @@ public class BulletManager : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-            if(enemy.diceNumber + 1 != dmgValue)
+            if(enemy.diceNumber != dmgValue)
             {
                 enemySpawnedpointVFX = Instantiate(enemyTextVFX, (Vector2)enemy.transform.position + new Vector2(0f,1f), Quaternion.identity);
-                enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs " + (enemy.diceNumber + 1) + "!");
+                enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs " + (enemy.diceNumber) + "!");
                 return;
             }
-            SpawnPoints(200);
-            Destroy(enemy.gameObject);
+            SpawnPoints(enemy.pointsOnKill);
+            enemy.OnHit();
             Destroy(gameObject);
         }
     }

@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceDependant: 1
   maxHealth: 1
-  diceNumber: 0
+  diceNumber: 1
   diceSprites:
   - {fileID: 21300000, guid: 269c69d9588a3a64faa288a8fb19e710, type: 3}
   - {fileID: 21300000, guid: 5ea6828e429a99949b4ede5ae3dacafc, type: 3}
@@ -346,6 +346,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 780ae431fa156854983bdb273b21898e, type: 3}
   pointVFX: {fileID: 2725617656621514401, guid: 897610f6e801cd648961c06d7a5b18ec, type: 3}
   pSystem: {fileID: 2075385847236122752, guid: c8f38aad4c37d054e842898d1e2a42a0, type: 3}
+  splitEnemy: {fileID: 0}
+  pointsOnHit: 50
+  pointsOnKill: 200
+  canSplit: 0
 --- !u!1 &7394046232259490162
 GameObject:
   m_ObjectHideFlags: 0

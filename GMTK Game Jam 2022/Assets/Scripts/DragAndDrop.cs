@@ -91,14 +91,14 @@ public class DragAndDrop : MonoBehaviour
     void MouseRightPressed(InputAction.CallbackContext context) 
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if(Physics.SphereCast(ray, 2, out RaycastHit hit))
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        
+        if (hit.collider != null && hit.collider.tag == "Draggable")
         {
-            if (hit.collider != null && hit.collider.tag == "Draggable")
-            {
-                hit.collider.gameObject.TryGetComponent<DiceManager>(out var dice);
-                dice?.OnRightClick();
-            }
+            hit.collider.gameObject.TryGetComponent<DiceManager>(out var dice);
+            dice?.OnRightClick();
         }
+        
 
 
 
