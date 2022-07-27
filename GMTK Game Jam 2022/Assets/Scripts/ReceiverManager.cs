@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ReceiverManager : MonoBehaviour
+public class ReceiverManager : MonoBehaviour, IDropHandler
 {
     public GameObject currentDiceAttached;
     public bool attached;
@@ -25,7 +26,7 @@ public class ReceiverManager : MonoBehaviour
             attached=false;
         }
 
-        if(attached && DragAndDrop.isDragging)
+        if(attached && DiceManager.isDragging)
         {
             if(DragAndDrop.draggedObject == currentDiceAttached)
             {
@@ -33,7 +34,11 @@ public class ReceiverManager : MonoBehaviour
                 currentDiceAttached = null;
             }
         }
+
+        CheckForDice();
     }
+
+    
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -58,5 +63,33 @@ public class ReceiverManager : MonoBehaviour
         }
     }
 
+    void CheckForDice()
+    {
+        if (DiceManager.isDragging)
+        {
+            if(currentDiceAttached != null)
+            {
+                if(currentDiceAttached == DiceManager.draggedDice)
+                {
+                    transform.DetachChildren();
+                }
+            }
 
+        }
+
+        if(transform.childCount > 0)
+        {
+            currentDiceAttached = transform.GetChild(0).gameObject;
+            return;
+        }
+        //currentDiceAttached = null;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (!currentDiceAttached)
+        {
+            DiceManager.draggedDice.transform.SetParent(transform);
+        }
+    }
 }

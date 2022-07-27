@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DiceManager : MonoBehaviour, IDrag
+public class DiceManager : MonoBehaviour, IDrag, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     [SerializeField]
     private bool canAttach;
@@ -20,7 +21,10 @@ public class DiceManager : MonoBehaviour, IDrag
 
     public bool shaking;
 
-    public void OnEndDrag()
+    public static GameObject draggedDice;
+    public static bool isDragging;
+
+    public void OnEn2dDrag()
     {
 
         diceBaseDisplay.sortingOrder = 2 + DragAndDrop.orderLayer;
@@ -50,6 +54,24 @@ public class DiceManager : MonoBehaviour, IDrag
         diceDisplay.sortingOrder = 11 + DragAndDrop.orderLayer;
     }
 
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(eventData.position);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        draggedDice = null;
+        isDragging = false;
+
+        if (canAttach && !currentReceiver.GetComponent<ReceiverManager>().attached)
+        {
+            rb.velocity = Vector2.zero;
+            transform.position = (Vector2)currentReceiver.transform.position;
+            return;
+        }
+    }
+
     public void OnRightClick()
     {
         if (cannonReceiver.GetComponent<ReceiverManager>().attached == false)
@@ -67,6 +89,7 @@ public class DiceManager : MonoBehaviour, IDrag
         diceBaseDisplay = gameObject.GetComponent<SpriteRenderer>();
         diceDisplay.enabled = false;
         shaking = false;
+        isDragging = false;
         cannonReceiver = GameObject.Find("Cannon Receiver");
 
         diceBaseDisplay.sortingOrder += DragAndDrop.orderLayer;
@@ -93,7 +116,7 @@ public class DiceManager : MonoBehaviour, IDrag
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Reciever" && DragAndDrop.isDragging)
+        if(collision.gameObject.tag == "Reciever" && isDragging)
         {
             canAttach = false;
         }
@@ -101,7 +124,7 @@ public class DiceManager : MonoBehaviour, IDrag
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Reciever" && DragAndDrop.isDragging)
+        if (collision.gameObject.tag == "Reciever" && isDragging)
         {
             currentReceiver = collision.gameObject;
             canAttach = true;
@@ -154,5 +177,11 @@ public class DiceManager : MonoBehaviour, IDrag
         }
         shaking = false;
          rb.position = oldPosition;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        isDragging = true;
+        draggedDice = gameObject;
     }
 }

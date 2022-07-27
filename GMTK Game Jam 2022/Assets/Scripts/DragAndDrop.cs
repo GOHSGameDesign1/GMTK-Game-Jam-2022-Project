@@ -59,7 +59,7 @@ public class DragAndDrop : MonoBehaviour
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
         if (hit.collider != null && hit.collider.tag == "Draggable")
         {
-            StartCoroutine(DragUpdate(hit.collider.gameObject));
+            //StartCoroutine(DragUpdate(hit.collider.gameObject));
         }
     }
 
@@ -85,7 +85,7 @@ public class DragAndDrop : MonoBehaviour
 
         }
         isDragging = false;
-        IDragCompenent?.OnEndDrag();
+        IDragCompenent?.OnEn2dDrag();
     }
 
     void MouseRightPressed(InputAction.CallbackContext context) 

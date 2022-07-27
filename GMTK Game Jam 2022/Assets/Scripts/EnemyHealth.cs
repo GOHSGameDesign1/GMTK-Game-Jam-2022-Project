@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
         textObject = transform.GetChild(0).gameObject;
         diceDisplayObject = transform.GetChild(1).gameObject;
 
-        splitEnemy = (GameObject)Resources.Load("Split Enemy");
+        //splitEnemy = (GameObject)Resources.Load("Split Enemy");
         canSplit = false;
     }
 
