@@ -9,11 +9,12 @@ public class SubtractionManager : MonoBehaviour
     private Transform output1;
 
     public GameObject dicePrefab;
+    public Canvas canvas;
     private GameObject currentlySpawnedDice;
 
     public GameObject pointVFX;
     GameObject currentspawnedpointVFX;
-    public Transform spawnVFXtransform;
+    public Transform spawnVFXTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -26,36 +27,42 @@ public class SubtractionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Calculate(subtractionSlot1.GetComponent<ReceiverManager>(), subtractionSlot2.GetComponent<ReceiverManager>());
+        Calculate(subtractionSlot1.GetComponent<Slot>(), subtractionSlot2.GetComponent<Slot>());
     }
 
-    private void Calculate(ReceiverManager sub1, ReceiverManager sub2)
+    private void Calculate(Slot sub1, Slot sub2)
     {
         if (sub1.attached && sub2.attached)
         {
-            PointsManager.points += 350;
-            currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
-            currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+350");
+            SpawnPoints(350);
 
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
+            Debug.Log(difference);
 
             sub1.attached = false;
-
+            sub1.transform.DetachChildren();
             Destroy(sub1.currentDiceAttached);
             Destroy(sub2.currentDiceAttached);
 
             if(difference <= 0)
             {
-                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
-                currentlySpawnedDice.GetComponent<DiceManager>().diceValue = 0;
+                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity, canvas.transform);
+                currentlySpawnedDice.GetComponent<Dice>().diceValue = 1;
                 DiceRandomizer.dice.Add(currentlySpawnedDice);
             } else
             {
-                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
-                currentlySpawnedDice.GetComponent<DiceManager>().diceValue = (int)difference - 1;
+                currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity, canvas.transform);
+                currentlySpawnedDice.GetComponent<Dice>().diceValue = (int)difference;
                 DiceRandomizer.dice.Add(currentlySpawnedDice);
             }
         }
+    }
+
+    void SpawnPoints(float pointValue)
+    {
+        PointsManager.points += pointValue;
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.identity);
+        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
     }
 
 

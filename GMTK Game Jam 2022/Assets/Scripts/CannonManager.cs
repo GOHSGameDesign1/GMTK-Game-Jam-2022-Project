@@ -49,14 +49,14 @@ public class CannonManager : MonoBehaviour
 
     void Shoot(InputAction.CallbackContext context)
     {
-        diceSlot.TryGetComponent<ReceiverManager>(out var receiverManager);
-        if (receiverManager.attached)
+        diceSlot.TryGetComponent<Slot>(out var slot);
+        if (slot.attached)
         {
             StopAllCoroutines();
             StartCoroutine(squish());
-            currentDiceValue = receiverManager.diceValue;
-            receiverManager.attached = false;
-            Destroy(receiverManager.currentDiceAttached);
+            currentDiceValue = slot.diceValue;
+            slot.attached = false;
+            Destroy(slot.currentDiceAttached);
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         }
     }

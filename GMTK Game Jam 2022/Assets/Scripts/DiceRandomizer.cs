@@ -10,6 +10,7 @@ public class DiceRandomizer : MonoBehaviour
 
 {
     public GameObject dicePrefab;
+    public Canvas canvas;
     public GameObject[] spawnPoints;
     [SerializeField]
     public static List<GameObject> dice = new List<GameObject>();
@@ -61,7 +62,7 @@ public class DiceRandomizer : MonoBehaviour
         }
         for (int i = 0; i < 3; i++)
         {
-            currentSpawnedDie = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity);
+            currentSpawnedDie = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity, canvas.transform);
             spawnedDice[i] = currentSpawnedDie;
             dice.Add(currentSpawnedDie);
         }

@@ -10,11 +10,12 @@ public class AdditionManager : MonoBehaviour
     private Transform output2;
 
     public GameObject dicePrefab;
+    public Canvas canvas;
     private GameObject currentlySpawnedDice;
 
     public GameObject pointVFX;
     GameObject currentspawnedpointVFX;
-    public Transform spawnVFXtransform;
+    public Transform spawnVFXTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +30,18 @@ public class AdditionManager : MonoBehaviour
     void Update()
     {
 
-        Calculate(additionSlot1.GetComponent<ReceiverManager>(), additionSlot2.GetComponent<ReceiverManager>());
+        Calculate(additionSlot1.GetComponent<Slot>(), additionSlot2.GetComponent<Slot>());
 
     }
 
-    private void Calculate(ReceiverManager addition1, ReceiverManager addition2)
+    private void Calculate(Slot addition1, Slot addition2)
     {
         if(addition1.attached && addition2.attached)
         {
 
             float sum = addition1.diceValue + addition2.diceValue;
-
+            Debug.Log(sum);
+            
 
             if(addition1.diceValue == 6  || addition2.diceValue == 6)
             {
@@ -50,6 +52,7 @@ public class AdditionManager : MonoBehaviour
             }
 
             addition1.attached = false;
+            addition1.transform.DetachChildren();
             Destroy(addition1.currentDiceAttached);
             Destroy(addition2.currentDiceAttached);
 
@@ -58,14 +61,14 @@ public class AdditionManager : MonoBehaviour
             {
                 if(sum > 6)
                 {
-                    currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output2.position, Quaternion.identity);
-                    currentlySpawnedDice.GetComponent<DiceManager>().diceValue = 5;
+                    currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output2.position, Quaternion.identity, canvas.transform);
+                    currentlySpawnedDice.GetComponent<Dice>().diceValue = 6;
                     DiceRandomizer.dice.Add(currentlySpawnedDice);
                     sum -= 6;
                 } else
                 {
-                    currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity);
-                    currentlySpawnedDice.GetComponent<DiceManager>().diceValue = (int)sum - 1;
+                    currentlySpawnedDice = Instantiate(dicePrefab, (Vector2)output1.position, Quaternion.identity, canvas.transform);
+                    currentlySpawnedDice.GetComponent<Dice>().diceValue = (int)sum;
                     DiceRandomizer.dice.Add(currentlySpawnedDice);
                     sum -= sum;
                 }
@@ -76,7 +79,7 @@ public class AdditionManager : MonoBehaviour
     void SpawnPoints(float pointValue)
     {
         PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.identity);
         currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
     }
 }

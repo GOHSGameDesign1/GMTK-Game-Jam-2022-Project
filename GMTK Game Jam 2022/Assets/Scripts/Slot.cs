@@ -7,7 +7,9 @@ public class Slot : MonoBehaviour, IDropHandler
 {
 
     [SerializeField]
-    private GameObject currentDiceAttached;
+    public GameObject currentDiceAttached;
+    public bool attached;
+    public int diceValue;
 
     public Canvas canvas;
 
@@ -24,7 +26,7 @@ public class Slot : MonoBehaviour, IDropHandler
     // Start is called before the first frame update
     void Start()
     {
-        
+        attached = false;
     }
 
     // Update is called once per frame
@@ -32,6 +34,11 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         // Debug.Log(currentDiceAttached.name);
         CheckForDice();
+
+        if(currentDiceAttached != null)
+        {
+            diceValue = currentDiceAttached.GetComponent<Dice>().diceValue;
+        }
     }
 
     void CheckForDice()
@@ -51,8 +58,13 @@ public class Slot : MonoBehaviour, IDropHandler
         if (transform.childCount > 0)
         {
             currentDiceAttached = transform.GetChild(0).gameObject;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+            diceValue = currentDiceAttached.GetComponent<Dice>().diceValue;
+            attached = true;
             return;
         }
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        attached = false;
         currentDiceAttached = null;
     }
 }
