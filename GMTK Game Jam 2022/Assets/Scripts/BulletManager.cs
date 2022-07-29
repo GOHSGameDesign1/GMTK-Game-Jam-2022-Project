@@ -76,7 +76,7 @@ public class BulletManager : MonoBehaviour
                     return;
                 }
 
-                SpawnPoints(200);
+                SpawnPoints(enemy.pointsOnKill);
                 Destroy(gameObject);
                 return;
             }

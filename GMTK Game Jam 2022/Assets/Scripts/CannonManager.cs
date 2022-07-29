@@ -58,7 +58,7 @@ public class CannonManager : MonoBehaviour
             StartCoroutine(squish());
             currentDiceValue = slot.diceValue;
             Destroy(slot.currentDiceAttached);
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         }
     }
 

@@ -1400,7 +1400,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: a785d438-f73c-48f5-8916-38e30c602207
-      m_Path: <Keyboard>/shift
+      m_Path: <Keyboard>/ctrl
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -7249,7 +7249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5699231457397002323, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5699231457397002324, guid: 87861ca9eb0ec894584f149135ebda88, type: 3}
       propertyPath: m_Color.b
