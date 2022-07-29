@@ -52,12 +52,13 @@ public class CannonManager : MonoBehaviour
         diceSlot.TryGetComponent<Slot>(out var slot);
         if (slot.attached)
         {
+            slot.transform.DetachChildren();
+            slot.attached = false;
             StopAllCoroutines();
             StartCoroutine(squish());
             currentDiceValue = slot.diceValue;
-            slot.attached = false;
             Destroy(slot.currentDiceAttached);
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         }
     }
 

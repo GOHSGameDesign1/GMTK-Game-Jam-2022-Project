@@ -23,6 +23,7 @@ public class DiceRandomizer : MonoBehaviour
     public GameObject pointVFX;
     GameObject currentspawnedpointVFX;
     public Transform spawnVFXtransform;
+    public GameObject panel;
 
     int randomNumber;
 
@@ -62,7 +63,7 @@ public class DiceRandomizer : MonoBehaviour
         }
         for (int i = 0; i < 3; i++)
         {
-            currentSpawnedDie = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity, canvas.transform);
+            currentSpawnedDie = Instantiate(dicePrefab, (Vector2)spawnPoints[i].transform.position, Quaternion.identity, panel.transform);
             spawnedDice[i] = currentSpawnedDie;
             dice.Add(currentSpawnedDie);
         }

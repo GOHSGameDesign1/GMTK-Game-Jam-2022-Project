@@ -11,6 +11,10 @@ public class DragAndDrop : MonoBehaviour
     [SerializeField]
     private InputAction mouseRightClick;
 
+    [SerializeField]
+    private InputAction shiftHold;
+    public static bool shiftHeldDown;
+
     private Vector2 velocity = Vector2.zero;
     public float mouseDragSpeed;
 
@@ -29,6 +33,8 @@ public class DragAndDrop : MonoBehaviour
 
         mouseRightClick.Enable();
         mouseRightClick.performed += MouseRightPressed;
+
+        shiftHold.Enable();
     }
 
     private void OnDisable()
@@ -38,18 +44,22 @@ public class DragAndDrop : MonoBehaviour
 
         mouseRightClick.Disable();
         mouseRightClick.performed -= MouseRightPressed;
+
+        shiftHold.Disable();
     }
     // Start is called before the first frame update
     void Start()
     {
         orderLayer = 0;
         isDragging = false;
+        shiftHeldDown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isDragging);
+
+        ShiftHeld();
     }
 
     void MousePressed(InputAction.CallbackContext context)
@@ -102,5 +112,17 @@ public class DragAndDrop : MonoBehaviour
 
 
 
+    }
+
+    void ShiftHeld()
+    {
+        Debug.Log(shiftHeldDown);
+
+        if(shiftHold.ReadValue<float>() != 0)
+        {
+            shiftHeldDown = true;
+            return;
+        }
+        shiftHeldDown = false;
     }
 }

@@ -11,12 +11,12 @@ public class Slot : MonoBehaviour, IDropHandler
     public bool attached;
     public int diceValue;
 
-    public Canvas canvas;
+    public GameObject panel;
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop");
-        if (!currentDiceAttached)
+        if (!currentDiceAttached && Dice.diceDragged != null)
         {
             Dice.diceDragged.transform.SetParent(transform);
             Dice.diceDragged.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -27,6 +27,7 @@ public class Slot : MonoBehaviour, IDropHandler
     void Start()
     {
         attached = false;
+        panel = GameObject.Find("Dice Panel");
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class Slot : MonoBehaviour, IDropHandler
             {
                 if (currentDiceAttached == Dice.diceDragged)
                 {
-                    Dice.diceDragged.transform.SetParent(canvas.transform);
+                    Dice.diceDragged.transform.SetParent(panel.transform);
                 }
             }
 
