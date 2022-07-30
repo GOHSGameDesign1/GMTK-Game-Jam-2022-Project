@@ -11,6 +11,7 @@ public class CannonManager : MonoBehaviour
     public GameObject barrel;
     public GameObject diceSlot;
     public GameObject bulletPrefab;
+    public ParticleSystem shootParticles;
     private Transform firePoint;
     private SpriteRenderer barrelRenderer;
 
@@ -59,6 +60,7 @@ public class CannonManager : MonoBehaviour
             currentDiceValue = slot.diceValue;
             Destroy(slot.currentDiceAttached);
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Instantiate(shootParticles, firePoint);
         }
     }
 
@@ -68,7 +70,7 @@ public class CannonManager : MonoBehaviour
         while (barrel.transform.localScale.x >= 0.301f)
         {
             //barrel.transform.localScale -= new Vector3(0.1f, 0, 0) * Time.deltaTime;
-            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.06f);
+            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.0001f);
             yield return null;
         }
 

@@ -7,6 +7,7 @@ public class EnemySpawning : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject enemyBigPrefab;
     public GameObject enemySplitPrefab;
+    public GameObject enemyEvenOddPrefab;
     public int maxHealthMin, maxHealthMax;
     public float spawnTimer;
     Vector2 screenBounds;
@@ -46,7 +47,7 @@ public class EnemySpawning : MonoBehaviour
 
             if(PointsManager.points >= 10000)
             {
-                int determine = Random.Range(0, 4);
+                int determine = Random.Range(0, 5);
                 switch (determine)
                 {
                     case 0:
@@ -56,14 +57,36 @@ public class EnemySpawning : MonoBehaviour
                         SpawnNormalEnemy();
                         break;
                     case 2:
-                        SpawnBigEnemy();
+                        SpawnEvenOdd();
                         break;
                     case 3:
+                        SpawnBigEnemy();
+                        break;
+                    case 4:
                         SpawnSplitEnemy();
                         break;
                 }
                 continue;
             }
+
+            if (PointsManager.points >= 5000)
+            {
+                int determine = Random.Range(0, 3);
+                switch (determine)
+                {
+                    case 0:
+                        SpawnNormalEnemy();
+                        break;
+                    case 1:
+                        SpawnNormalEnemy();
+                        break;
+                    case 2:
+                        SpawnEvenOdd();
+                        break;
+                }
+                continue;
+            }
+
             SpawnNormalEnemy();
         }
     }
@@ -103,5 +126,23 @@ public class EnemySpawning : MonoBehaviour
         enemy.canSplit = true;
         enemy.diceDependant = true;
         enemy.diceNumber = Random.Range(2, 7);
+    }
+
+    void SpawnEvenOdd()
+    {
+        GameObject currentlySpawnedEnemy = Instantiate(enemyEvenOddPrefab, spawnPos, Quaternion.identity);
+        currentlySpawnedEnemy.TryGetComponent<EvenOddManager>(out var enemy);
+
+        int determine = Random.Range(0, 2);
+
+        if(determine == 0)
+        {
+            enemy.isEven = true;
+        }
+        else
+        {
+            enemy.isEven = false;
+        }
+
     }
 }

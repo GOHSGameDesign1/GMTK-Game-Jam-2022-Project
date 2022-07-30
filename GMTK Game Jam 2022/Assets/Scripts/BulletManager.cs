@@ -61,10 +61,12 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //CHECKS FOR NORMAL ENEMIES
         if(collision.tag == "Enemy")
         {
             collision.TryGetComponent<EnemyHealth>(out var enemy);
 
+            //CHECKS FOR HEALTH RELIANT ENEMIES
             if (!enemy.diceDependant)
             {
                 enemy.maxHealth -= dmgValue;
@@ -80,6 +82,7 @@ public class BulletManager : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
+            //CHECKS FOR DICE DEPENDANT ENEMIES
             if(enemy.diceNumber != dmgValue)
             {
                 enemySpawnedpointVFX = Instantiate(enemyTextVFX, (Vector2)enemy.transform.position + new Vector2(0f,1f), Quaternion.identity);
@@ -89,6 +92,38 @@ public class BulletManager : MonoBehaviour
             SpawnPoints(enemy.pointsOnKill);
             enemy.OnHit();
             Destroy(gameObject);
+        }
+
+        //CHECKS FOR EVEN/ODD ENEMIES
+        if(collision.tag == "EvenOdd")
+        {
+            collision.TryGetComponent<EvenOddManager>(out var enemy);
+
+            //CHECKS FOR EVEN
+            if (enemy.isEven)
+            {
+                if(dmgValue % 2 != 0)
+                {
+                    enemySpawnedpointVFX = Instantiate(enemyTextVFX, (Vector2)enemy.transform.position + new Vector2(0f, 1f), Quaternion.identity);
+                    enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs Even!");
+                    return;
+                }
+                SpawnPoints(enemy.pointsOnKill);
+                Destroy(enemy.gameObject);
+                Destroy(gameObject);
+                return;
+            }
+            //CHECKS FOR ODDS
+            if (dmgValue % 2 == 0)
+            {
+                enemySpawnedpointVFX = Instantiate(enemyTextVFX, (Vector2)enemy.transform.position + new Vector2(0f, 1f), Quaternion.identity);
+                enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs Odd!");
+                return;
+            }
+            SpawnPoints(enemy.pointsOnKill);
+            Destroy(enemy.gameObject);
+            Destroy(gameObject);
+            return;
         }
     }
     private void OnDestroy()

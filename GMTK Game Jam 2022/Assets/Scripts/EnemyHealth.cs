@@ -58,25 +58,6 @@ public class EnemyHealth : MonoBehaviour
         {
             Instantiate(pSystem, transform.position, Quaternion.identity);
 
-            /*if (canSplit)
-            {
-                int[] splitDiceNumbers = new int[2];
-                splitDiceNumbers[0] = (int)Mathf.Floor((diceNumber + 1) / 2) - 1;
-                splitDiceNumbers[1] = diceNumber - splitDiceNumbers[0];
-                //GameObject currentSplit = Instantiate(splitEnemy, (Vector2)transform.position + new Vector2(0f, 1f), Quaternion.identity);
-                //currentSplit.GetComponent<EnemyHealth>().diceNumber = (int)Mathf.Floor((diceNumber + 1) / 2) - 1;
-
-                int counter = 0;
-                for (int i = -1; i < 2; i += 2)
-                {
-                    GameObject currentSplit = Instantiate(splitEnemy, (Vector2)transform.position + new Vector2(0f, i), Quaternion.identity);
-                    currentSplit.GetComponent<EnemyHealth>().diceNumber = splitDiceNumbers[counter];
-                    counter++;
-                }
-            }*/
-            // currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
-            //currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+200");
-
         }
         
     }
