@@ -60,7 +60,7 @@ public class CannonManager : MonoBehaviour
             currentDiceValue = slot.diceValue;
             Destroy(slot.currentDiceAttached);
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-            Instantiate(shootParticles, firePoint);
+            Instantiate(shootParticles, firePoint.position, Quaternion.Euler(barrel.transform.rotation.eulerAngles.z * -1f, 90, 0));
         }
     }
 
@@ -70,7 +70,7 @@ public class CannonManager : MonoBehaviour
         while (barrel.transform.localScale.x >= 0.301f)
         {
             //barrel.transform.localScale -= new Vector3(0.1f, 0, 0) * Time.deltaTime;
-            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.0001f);
+            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.1f);
             yield return null;
         }
 
