@@ -51,9 +51,9 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        diceDragged = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         isDragging=false;
-        diceDragged = null;
     }
 
     // Start is called before the first frame update
@@ -77,6 +77,17 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         diceDisplay.enabled = true;
         diceDisplay.texture = diceSprites[diceValue - 1];
+
+        if(diceDragged != null)
+        {
+            if (diceDragged != gameObject)
+            {
+                GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+        } else
+        {
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

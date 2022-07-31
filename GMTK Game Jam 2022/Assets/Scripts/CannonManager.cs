@@ -70,7 +70,7 @@ public class CannonManager : MonoBehaviour
         while (barrel.transform.localScale.x >= 0.301f)
         {
             //barrel.transform.localScale -= new Vector3(0.1f, 0, 0) * Time.deltaTime;
-            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.1f);
+            barrel.transform.localScale = Vector3.SmoothDamp(barrel.transform.localScale, new Vector3(0.3f, 1,1), ref velocity, 0.03f);
             yield return null;
         }
 

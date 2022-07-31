@@ -2096,19 +2096,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6457272591662771844, guid: c65dabc2f601a5b47ad24a6cab6f6aed, type: 3}
       propertyPath: m_RaycastPadding.w
-      value: -30
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 6457272591662771844, guid: c65dabc2f601a5b47ad24a6cab6f6aed, type: 3}
       propertyPath: m_RaycastPadding.x
-      value: -30
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 6457272591662771844, guid: c65dabc2f601a5b47ad24a6cab6f6aed, type: 3}
       propertyPath: m_RaycastPadding.y
-      value: -30
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 6457272591662771844, guid: c65dabc2f601a5b47ad24a6cab6f6aed, type: 3}
       propertyPath: m_RaycastPadding.z
-      value: -30
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 6457272591662771846, guid: c65dabc2f601a5b47ad24a6cab6f6aed, type: 3}
       propertyPath: m_Pivot.x
@@ -3765,11 +3765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8518119520998694741, guid: 14a53687fd94519409765886d516985b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -104.5
+      value: -219
       objectReference: {fileID: 0}
     - target: {fileID: 8518119520998694741, guid: 14a53687fd94519409765886d516985b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.3
+      value: 56.735
       objectReference: {fileID: 0}
     - target: {fileID: 8518119520998694741, guid: 14a53687fd94519409765886d516985b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4653,7 +4653,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1851971581
   m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1324309742
@@ -7423,10 +7423,6 @@ PrefabInstance:
     - target: {fileID: 3123035847558962311, guid: 552027f270262414eb30a586ec9ff179, type: 3}
       propertyPath: m_Name
       value: Shoot Effects
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123035847558962311, guid: 552027f270262414eb30a586ec9ff179, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552027f270262414eb30a586ec9ff179, type: 3}

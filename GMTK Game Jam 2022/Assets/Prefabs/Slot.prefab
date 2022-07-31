@@ -93,7 +93,7 @@ MonoBehaviour:
   currentDiceAttached: {fileID: 0}
   attached: 0
   diceValue: 0
-  canvas: {fileID: 0}
+  panel: {fileID: 0}
 --- !u!225 &6457272591662771898
 CanvasGroup:
   m_ObjectHideFlags: 0
