@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.ParticleSystemJobs;
+using Cinemachine;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
         if (canInstantiate)
         {
             Instantiate(pSystem, transform.position, Quaternion.identity);
-
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         }
         
     }
