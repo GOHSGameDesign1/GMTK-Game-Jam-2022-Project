@@ -13,6 +13,7 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public int diceValue;
     public Texture[] diceSprites;
+    public ParticleSystem explodeParticles;
     private RawImage diceDisplay;
 
     private GameObject cannonSlot;
@@ -64,6 +65,11 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         diceValue = Random.Range(1, 7);
         diceDisplay = transform.GetChild(0).GetComponent<RawImage>();
         diceDisplay.enabled = false;
+
+        if (explodeParticles != null)
+        {
+            Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -129,5 +135,18 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             }
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        if (explodeParticles != null)
+        {
+            //Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        explodeParticles = null;
     }
 }

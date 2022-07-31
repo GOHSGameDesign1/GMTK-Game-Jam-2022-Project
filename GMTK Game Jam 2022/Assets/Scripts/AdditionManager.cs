@@ -52,7 +52,7 @@ public class AdditionManager : MonoBehaviour
             }
 
             addition1.attached = false;
-            addition1.transform.DetachChildren();
+            //addition1.transform.DetachChildren();
             Destroy(addition1.currentDiceAttached);
             Destroy(addition2.currentDiceAttached);
 

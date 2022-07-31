@@ -99,6 +99,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: d1a58ed60143a694ca362c95a515205c, type: 3}
   - {fileID: 2800000, guid: ac6a1a59aa6103045a8117c3e48f967d, type: 3}
   - {fileID: 2800000, guid: 780ae431fa156854983bdb273b21898e, type: 3}
+  explodeParticles: {fileID: 6711086611391138069, guid: 96a8f9c19cb7ef049820c3687a228bfb, type: 3}
 --- !u!225 &8518119520998694697
 CanvasGroup:
   m_ObjectHideFlags: 0
