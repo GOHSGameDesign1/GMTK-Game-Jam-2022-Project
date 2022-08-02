@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class EvenOddManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class EvenOddManager : MonoBehaviour
         if (canInstantiate)
         {
             Instantiate(deathParticles, transform.position, Quaternion.identity);
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 
         }
     }

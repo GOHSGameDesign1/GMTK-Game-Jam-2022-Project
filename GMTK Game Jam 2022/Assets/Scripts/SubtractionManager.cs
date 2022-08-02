@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class SubtractionManager : MonoBehaviour
 {
     private GameObject subtractionSlot1;
@@ -38,6 +38,7 @@ public class SubtractionManager : MonoBehaviour
 
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
             Debug.Log(difference);
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 
             sub1.attached = false;
             sub1.transform.DetachChildren();

@@ -15,6 +15,7 @@ public class BulletManager : MonoBehaviour
     private Vector2 mousePos;
     private Rigidbody2D rb;
     public GameObject pointVFX;
+    public ParticleSystem explodeParticles;
     GameObject currentspawnedpointVFX;
     public GameObject enemyTextVFX;
     GameObject enemySpawnedpointVFX;
@@ -74,6 +75,7 @@ public class BulletManager : MonoBehaviour
                 if(enemy.maxHealth > 0)
                 {
                     SpawnPoints(enemy.pointsOnHit);
+                    Instantiate(explodeParticles, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                     return;
                 }

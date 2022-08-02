@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class AdditionManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class AdditionManager : MonoBehaviour
 
             float sum = addition1.diceValue + addition2.diceValue;
             Debug.Log(sum);
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
             
 
             if(addition1.diceValue == 6  || addition2.diceValue == 6)
