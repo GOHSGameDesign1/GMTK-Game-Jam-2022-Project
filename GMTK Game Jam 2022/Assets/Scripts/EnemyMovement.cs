@@ -21,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
     public void Move()
     {
         Vector2 newPos = rb.position + (Vector2)transform.right * -1f * runSpeed * Time.fixedDeltaTime;
+        //rb.velocity += new Vector2(2,2);
         rb.MovePosition(newPos);
     }
 }

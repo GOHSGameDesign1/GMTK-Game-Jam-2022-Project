@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IDrag
 {
     void OnStartDrag();
-    void OnEndDrag();
+    void OnEn2dDrag();
+    void OnRightClick();
 }
