@@ -53,7 +53,7 @@ public class DiceRandomizer : MonoBehaviour
 
     public void RollDice()
     {
-
+        GetComponent<AudioSource>().Play();
         foreach(GameObject die in spawnedDice)
         {
            if(die != null)
