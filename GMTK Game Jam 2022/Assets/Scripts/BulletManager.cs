@@ -111,7 +111,7 @@ public class BulletManager : MonoBehaviour
                     return;
                 }
                 SpawnPoints(enemy.pointsOnKill);
-                Destroy(enemy.gameObject);
+                enemy.OnHit();
                 Destroy(gameObject);
                 return;
             }
@@ -123,7 +123,7 @@ public class BulletManager : MonoBehaviour
                 return;
             }
             SpawnPoints(enemy.pointsOnKill);
-            Destroy(enemy.gameObject);
+            enemy.OnHit();
             Destroy(gameObject);
             return;
         }

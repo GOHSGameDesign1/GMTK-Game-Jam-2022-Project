@@ -30,10 +30,16 @@ public class EvenOddManager : MonoBehaviour
         textDisplay.GetComponent<TextMeshPro>().text = "O";
     }
 
+    public void OnHit()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         if (canInstantiate)
         {
+            GetComponent<AudioSource>().Play();
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 

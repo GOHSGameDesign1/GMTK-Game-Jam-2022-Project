@@ -13,7 +13,6 @@ public class CannonManager : MonoBehaviour
     public GameObject bulletPrefab;
     public ParticleSystem shootParticles;
     private Transform firePoint;
-    private SpriteRenderer barrelRenderer;
 
     [SerializeField]
     private InputAction fire;
@@ -53,6 +52,7 @@ public class CannonManager : MonoBehaviour
         diceSlot.TryGetComponent<Slot>(out var slot);
         if (slot.attached)
         {
+
             slot.transform.DetachChildren();
             slot.attached = false;
             StopAllCoroutines();
