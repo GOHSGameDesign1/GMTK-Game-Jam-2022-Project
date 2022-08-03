@@ -18,6 +18,7 @@ public class Slot : MonoBehaviour, IDropHandler
         Debug.Log("Drop");
         if (!currentDiceAttached && Dice.diceDragged != null)
         {
+            GetComponent<AudioSource>().Play();
             Dice.diceDragged.transform.SetParent(transform);
             Dice.diceDragged.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }

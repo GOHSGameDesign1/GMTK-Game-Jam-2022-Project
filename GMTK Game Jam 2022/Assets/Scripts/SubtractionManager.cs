@@ -38,6 +38,7 @@ public class SubtractionManager : MonoBehaviour
 
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
             Debug.Log(difference);
+            GetComponent<AudioSource>().Play();
             GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 
             sub1.attached = false;

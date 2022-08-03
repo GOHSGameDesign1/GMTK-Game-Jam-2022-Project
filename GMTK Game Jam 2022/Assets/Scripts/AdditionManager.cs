@@ -43,6 +43,7 @@ public class AdditionManager : MonoBehaviour
             float sum = addition1.diceValue + addition2.diceValue;
             Debug.Log(sum);
             GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+            GetComponent<AudioSource>().Play();
             
 
             if(addition1.diceValue == 6  || addition2.diceValue == 6)

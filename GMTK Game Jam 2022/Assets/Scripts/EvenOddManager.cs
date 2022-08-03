@@ -39,7 +39,6 @@ public class EvenOddManager : MonoBehaviour
     {
         if (canInstantiate)
         {
-            GetComponent<AudioSource>().Play();
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 

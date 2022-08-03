@@ -107,14 +107,12 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             {
                 if (!addSlots[0].attached)
                 {
-                    transform.SetParent(addSlots[0].transform);
-                    GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    AttachDice(addSlots[0].transform);
                     return;
                 }
                 if (!addSlots[1].attached)
                 {
-                    transform.SetParent(addSlots[1].transform);
-                    GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    AttachDice(addSlots[1].transform);
                     return;
                 }
 
@@ -124,28 +122,33 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             {
                 if (!minusSlots[0].attached)
                 {
-                    transform.SetParent(minusSlots[0].transform);
-                    GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    AttachDice(minusSlots[0].transform);
                     return;
                 }
                 if (!minusSlots[1].attached)
                 {
-                    transform.SetParent(minusSlots[1].transform);
-                    GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    AttachDice(minusSlots[1].transform);
                     return;
                 }
             }
             return;
         }
+
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (!cannonSlot.GetComponent<Slot>().attached)
             {
-                transform.SetParent(cannonSlot.transform);
-                GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                AttachDice(cannonSlot.transform);
             }
         }
 
+    }
+
+    private void AttachDice(Transform target)
+    {
+        transform.SetParent(target);
+        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnDestroy()
