@@ -101,6 +101,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ac6a1a59aa6103045a8117c3e48f967d, type: 3}
   - {fileID: 2800000, guid: 780ae431fa156854983bdb273b21898e, type: 3}
   explodeParticles: {fileID: 6711086611391138069, guid: 96a8f9c19cb7ef049820c3687a228bfb, type: 3}
+  audioClip: {fileID: 3124209046572708445, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
 --- !u!225 &8518119520998694697
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8518119520998694740}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6f2cbae77c3341b468bd2e4f852692df, type: 3}

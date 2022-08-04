@@ -329,7 +329,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9d254997406db4746a8887e1e3d50673, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.863
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7885,6 +7885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle System (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2075385847236122758, guid: c8f38aad4c37d054e842898d1e2a42a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8f38aad4c37d054e842898d1e2a42a0, type: 3}
 --- !u!1001 &190453826312772133
@@ -7897,6 +7901,10 @@ PrefabInstance:
     - target: {fileID: 1689168481311225131, guid: 96a8f9c19cb7ef049820c3687a228bfb, type: 3}
       propertyPath: m_Name
       value: Dice Explode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689168481311225131, guid: 96a8f9c19cb7ef049820c3687a228bfb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4224073497493866358, guid: 96a8f9c19cb7ef049820c3687a228bfb, type: 3}
       propertyPath: m_RootOrder
@@ -8174,6 +8182,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 463acaecd8cb21e4eb4760768a440869, type: 3}
+--- !u!1001 &999775641527018623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3124209046572708445, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_Name
+      value: Slot Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940278614252345266, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
 --- !u!1001 &1678449023431136548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8232,6 +8297,10 @@ PrefabInstance:
     - target: {fileID: 5838377782814572976, guid: 9130a8a571867bd41b8ee5f5f030e3de, type: 3}
       propertyPath: m_Name
       value: Bullet Explode Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838377782814572976, guid: 9130a8a571867bd41b8ee5f5f030e3de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9130a8a571867bd41b8ee5f5f030e3de, type: 3}
@@ -8462,7 +8531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123035847558962311, guid: 552027f270262414eb30a586ec9ff179, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552027f270262414eb30a586ec9ff179, type: 3}
@@ -8636,7 +8705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072128155430271269, guid: 6f3f9045feedae54f91f9044f83acca0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3f9045feedae54f91f9044f83acca0, type: 3}

@@ -12,13 +12,14 @@ public class Slot : MonoBehaviour, IDropHandler
     public int diceValue;
 
     public GameObject panel;
+    public GameObject audioClip;
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop");
         if (!currentDiceAttached && Dice.diceDragged != null)
         {
-            GetComponent<AudioSource>().Play();
+            Instantiate(audioClip, transform.position, Quaternion.identity);
             Dice.diceDragged.transform.SetParent(transform);
             Dice.diceDragged.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }

@@ -95,6 +95,7 @@ MonoBehaviour:
   attached: 0
   diceValue: 0
   panel: {fileID: 0}
+  audioClip: {fileID: 3124209046572708445, guid: c01a2f372985bd142ba418352e7ef408, type: 3}
 --- !u!225 &6457272591662771898
 CanvasGroup:
   m_ObjectHideFlags: 0

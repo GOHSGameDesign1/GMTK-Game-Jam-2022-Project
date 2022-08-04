@@ -14,6 +14,7 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public int diceValue;
     public Texture[] diceSprites;
     public ParticleSystem explodeParticles;
+    public GameObject audioClip;
     private RawImage diceDisplay;
 
     private GameObject cannonSlot;
@@ -146,9 +147,9 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void AttachDice(Transform target)
     {
+        Instantiate(audioClip, transform);
         transform.SetParent(target);
         GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        GetComponent<AudioSource>().Play();
     }
 
     private void OnDestroy()
