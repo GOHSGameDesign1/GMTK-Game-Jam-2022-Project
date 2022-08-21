@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
 {
     public static bool isPaused;
     public GameObject pausePanel;
+    public GameObject gamePanel;
     public InputAction pauseAction;
     // Start is called before the first frame update
     void Start()
     {
+        gamePanel.SetActive(true);
         pausePanel.SetActive(false);
     }
 
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         isPaused = true;
+        gamePanel.SetActive(false);
         pausePanel.SetActive(true);
     }
 
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
+        gamePanel.SetActive(true);
         pausePanel.SetActive(false);
     }
 
