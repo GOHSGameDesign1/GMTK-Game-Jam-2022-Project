@@ -50,7 +50,7 @@ public class CannonManager : MonoBehaviour
     void Shoot(InputAction.CallbackContext context)
     {
         diceSlot.TryGetComponent<Slot>(out var slot);
-        if (slot.attached)
+        if (slot.attached && !GameManager.isPaused)
         {
 
             slot.transform.DetachChildren();
