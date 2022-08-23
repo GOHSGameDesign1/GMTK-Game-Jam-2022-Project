@@ -82,7 +82,7 @@ public class AdditionManager : MonoBehaviour
     void SpawnPoints(float pointValue)
     {
         PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.Euler(0, 0, Random.Range(-10f, 10f)));
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
         currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 }

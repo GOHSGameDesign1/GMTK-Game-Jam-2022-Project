@@ -33,7 +33,7 @@ public class BulletManager : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
 
-        currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position, Quaternion.identity);
+        currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position + new Vector3(0,1,0), Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
         currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("-100");
         PointsManager.points -= 100;
 
@@ -142,7 +142,7 @@ public class BulletManager : MonoBehaviour
     void SpawnPoints(float pointValue)
     {
         PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
+        currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
         currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 
