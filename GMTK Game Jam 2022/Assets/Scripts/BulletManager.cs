@@ -34,7 +34,7 @@ public class BulletManager : MonoBehaviour
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
 
         currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position, Quaternion.identity);
-        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("-100");
+        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("-100");
         PointsManager.points -= 100;
 
         StartCoroutine(LifetimeTimer());
@@ -143,7 +143,7 @@ public class BulletManager : MonoBehaviour
     {
         PointsManager.points += pointValue;
         currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.identity);
-        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
+        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 
 }

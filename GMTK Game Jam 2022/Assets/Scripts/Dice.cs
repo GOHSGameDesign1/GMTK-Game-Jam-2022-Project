@@ -100,6 +100,11 @@ public class Dice : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         addSlots[1] = GameObject.Find("Add Slot 2").GetComponent<Slot>();
         minusSlots[0] = GameObject.Find("Minus Slot 1").GetComponent<Slot>();
         minusSlots[1] = GameObject.Find("Minus Slot 2").GetComponent<Slot>();
+        
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(diceRectTransform, eventData.position, eventData.pressEventCamera, out var globalMousePosition))
+        {
+            diceRectTransform.position = (Vector2)globalMousePosition;
+        }
 
         if (DragAndDrop.shiftHeldDown)
         {

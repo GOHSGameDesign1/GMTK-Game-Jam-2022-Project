@@ -63,8 +63,8 @@ public class SubtractionManager : MonoBehaviour
     void SpawnPoints(float pointValue)
     {
         PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.identity);
-        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
+        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.Euler(0,0, Random.Range(-10f, 10f)) );
+        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 
 
