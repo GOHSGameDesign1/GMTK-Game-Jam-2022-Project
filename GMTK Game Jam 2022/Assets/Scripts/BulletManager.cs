@@ -72,13 +72,13 @@ public class BulletManager : MonoBehaviour
 
                 if(enemy.maxHealth > 0)
                 {
-                    PointsManager.SpawnPoints(enemy.pointsOnHit, transform.position,0);
+                    PointsManager.SpawnPoints(enemy.pointsOnHit, transform.position, 0);
                     Instantiate(explodeParticles, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                     return;
                 }
 
-                PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position,0);
+                PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position, 0);
                 Destroy(gameObject);
                 return;
             }

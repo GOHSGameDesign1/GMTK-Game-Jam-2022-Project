@@ -13,6 +13,7 @@ public class PointsManager : MonoBehaviour
     public static GameObject currentSpawnedPointsVFX = null;
     private static Vector3 velocity = Vector3.zero;
     public static List<GameObject> bulletVFX = new List<GameObject>();
+    public static int bulletCount = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -67,13 +68,14 @@ public class PointsManager : MonoBehaviour
                 break;
         }
 
-        if (true)
+        if (bulletVFX.Count != bulletCount)
         {
             foreach(GameObject p in bulletVFX)
             {
-                p.transform.position += new Vector3(0, 0.7f, 0);
+                //p.transform.position += new Vector3(0, 0.7f, 0);
                 //p.GetComponent<PointsVFXManager>().StopAllCoroutines();
-                //p.GetComponent<PointsVFXManager>().StartCoroutine(p.GetComponent<PointsVFXManager>().coroutine);
+                p.GetComponent<PointsVFXManager>().targetPosition += new Vector2(0, 1f);
+                bulletCount = bulletVFX.Count;
             }
 
         }
