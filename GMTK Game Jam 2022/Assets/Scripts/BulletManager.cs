@@ -33,9 +33,7 @@ public class BulletManager : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
 
-        currentspawnedpointVFX = Instantiate(pointVFX, cannon.transform.position + new Vector3(0,1,0), Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
-        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("-100");
-        PointsManager.points -= 100;
+        PointsManager.SpawnPoints(-100, (Vector2)cannon.transform.position + Vector2.up, 1);
 
         StartCoroutine(LifetimeTimer());
     }
@@ -74,13 +72,13 @@ public class BulletManager : MonoBehaviour
 
                 if(enemy.maxHealth > 0)
                 {
-                    SpawnPoints(enemy.pointsOnHit);
+                    PointsManager.SpawnPoints(enemy.pointsOnHit, transform.position,0);
                     Instantiate(explodeParticles, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                     return;
                 }
 
-                SpawnPoints(enemy.pointsOnKill);
+                PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position,0);
                 Destroy(gameObject);
                 return;
             }
@@ -91,7 +89,7 @@ public class BulletManager : MonoBehaviour
                 enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs " + (enemy.diceNumber) + "!");
                 return;
             }
-            SpawnPoints(enemy.pointsOnKill);
+            PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position,0);
             enemy.OnHit();
             Destroy(gameObject);
         }
@@ -110,7 +108,7 @@ public class BulletManager : MonoBehaviour
                     enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs Even!");
                     return;
                 }
-                SpawnPoints(enemy.pointsOnKill);
+                PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position,0);
                 enemy.OnHit();
                 Destroy(gameObject);
                 return;
@@ -122,28 +120,17 @@ public class BulletManager : MonoBehaviour
                 enemySpawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("Needs Odd!");
                 return;
             }
-            SpawnPoints(enemy.pointsOnKill);
+            PointsManager.SpawnPoints(enemy.pointsOnKill, transform.position,0);
             enemy.OnHit();
             Destroy(gameObject);
             return;
         }
-    }
-    private void OnDestroy()
-    {
-
     }
 
     IEnumerator LifetimeTimer()
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
-    }
-
-    void SpawnPoints(float pointValue)
-    {
-        PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, transform.position, Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
-        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 
 }

@@ -48,10 +48,10 @@ public class AdditionManager : MonoBehaviour
 
             if(addition1.diceValue == 6  || addition2.diceValue == 6)
             {
-                SpawnPoints(0);
+                PointsManager.SpawnPoints(0, spawnVFXTransform.position, 1);
             } else
             {
-                SpawnPoints(200);
+                PointsManager.SpawnPoints(200, spawnVFXTransform.position, 1);
             }
 
             addition1.attached = false;
@@ -77,12 +77,5 @@ public class AdditionManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    void SpawnPoints(float pointValue)
-    {
-        PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.Euler(0, 0, Random.Range(-15f, 15f)));
-        currentspawnedpointVFX.GetComponent<PointsVFXManager>().displayPointValue("+" + pointValue.ToString());
     }
 }
