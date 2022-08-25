@@ -34,7 +34,7 @@ public class SubtractionManager : MonoBehaviour
     {
         if (sub1.attached && sub2.attached)
         {
-            SpawnPoints(350);
+            PointsManager.SpawnPoints(350, spawnVFXTransform.position - new Vector3(0, 1.5f, 0), 3);
 
             float difference = Mathf.Abs(sub1.diceValue - sub2.diceValue);
             Debug.Log(difference);
@@ -58,13 +58,6 @@ public class SubtractionManager : MonoBehaviour
                 DiceRandomizer.dice.Add(currentlySpawnedDice);
             }
         }
-    }
-
-    void SpawnPoints(float pointValue)
-    {
-        PointsManager.points += pointValue;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXTransform.position, Quaternion.identity);
-        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("+" + pointValue.ToString());
     }
 
 
