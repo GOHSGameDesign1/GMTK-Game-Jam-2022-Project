@@ -14,7 +14,7 @@ public class PointsVFXManager : MonoBehaviour
     {
         tmp = transform.GetChild(0).GetComponent<TMP_Text>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        targetPosition = (Vector2)transform.position + new Vector2(0,-1);
+        targetPosition = (Vector2)transform.position + new Vector2(0,0);
     }
 
     // Update is called once per frame
@@ -49,6 +49,23 @@ public class PointsVFXManager : MonoBehaviour
         {
             PointsManager.bulletVFX.Remove(gameObject);
             PointsManager.bulletCount--;
+        }
+        if (PointsManager.addVFX.Contains(gameObject))
+        {
+            PointsManager.addVFX.Remove(gameObject);
+            PointsManager.AddVFXCount--;
+        }
+
+        if (PointsManager.subVFX.Contains(gameObject))
+        {
+            PointsManager.subVFX.Remove(gameObject);
+            PointsManager.subVFXCount--;
+        }
+
+        if (PointsManager.rerollVFX.Contains(gameObject))
+        {
+            PointsManager.rerollVFX.Remove(gameObject);
+            PointsManager.rerollVFXCount--;
         }
     }
 }

@@ -48,10 +48,10 @@ public class AdditionManager : MonoBehaviour
 
             if(addition1.diceValue == 6  || addition2.diceValue == 6)
             {
-                PointsManager.SpawnPoints(0, spawnVFXTransform.position, 1);
+                PointsManager.SpawnPoints(0, spawnVFXTransform.position - new Vector3(0, 1.5f, 0), 2);
             } else
             {
-                PointsManager.SpawnPoints(200, spawnVFXTransform.position, 1);
+                PointsManager.SpawnPoints(200, spawnVFXTransform.position - new Vector3(0, 1.5f, 0), 2);
             }
 
             addition1.attached = false;

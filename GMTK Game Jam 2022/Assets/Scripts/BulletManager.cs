@@ -33,7 +33,7 @@ public class BulletManager : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = diceSprites[dmgValue - 1];
 
-        PointsManager.SpawnPoints(-100, (Vector2)cannon.transform.position + Vector2.up, 1);
+        PointsManager.SpawnPoints(-100, (Vector2)cannon.transform.position, 1);
 
         StartCoroutine(LifetimeTimer());
     }

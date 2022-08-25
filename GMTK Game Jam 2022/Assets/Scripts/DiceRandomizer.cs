@@ -43,9 +43,7 @@ public class DiceRandomizer : MonoBehaviour
 
     public void RerollDice()
     {
-        PointsManager.points -= 300;
-        currentspawnedpointVFX = Instantiate(pointVFX, spawnVFXtransform.position, Quaternion.identity);
-        currentspawnedpointVFX.GetComponent<TextParticlesController>().displayPointValue("-300");
+        PointsManager.SpawnPoints(-300, spawnVFXtransform.position - new Vector3(0, 1.5f, 0), 4);
 
         RollDice();
     }

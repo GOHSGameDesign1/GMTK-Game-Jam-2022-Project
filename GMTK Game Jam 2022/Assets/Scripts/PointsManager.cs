@@ -14,6 +14,12 @@ public class PointsManager : MonoBehaviour
     private static Vector3 velocity = Vector3.zero;
     public static List<GameObject> bulletVFX = new List<GameObject>();
     public static int bulletCount = 0;
+    public static List<GameObject> addVFX = new List<GameObject>();
+    public static int AddVFXCount = 0;
+    public static List<GameObject> subVFX = new List<GameObject>();
+    public static int subVFXCount = 0;
+    public static List<GameObject> rerollVFX = new List<GameObject>();
+    public static int rerollVFXCount = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,7 +70,15 @@ public class PointsManager : MonoBehaviour
                 break;
             case 1:
                 bulletVFX.Add(currentSpawnedPointsVFX);
-                Debug.Log(bulletVFX.Count);
+                break;
+            case 2:
+                addVFX.Add(currentSpawnedPointsVFX);
+                break;
+            case 3:
+                subVFX.Add(currentSpawnedPointsVFX);
+                break;
+            case 4:
+                rerollVFX.Add(currentSpawnedPointsVFX);
                 break;
         }
 
@@ -72,15 +86,38 @@ public class PointsManager : MonoBehaviour
         {
             foreach(GameObject p in bulletVFX)
             {
-                //p.transform.position += new Vector3(0, 0.7f, 0);
-                //p.GetComponent<PointsVFXManager>().StopAllCoroutines();
                 p.GetComponent<PointsVFXManager>().targetPosition += new Vector2(0, 1f);
                 bulletCount = bulletVFX.Count;
             }
 
         }
 
+        if(addVFX.Count != AddVFXCount)
+        {
+            foreach (GameObject p in addVFX)
+            {
+                p.GetComponent<PointsVFXManager>().targetPosition += new Vector2(0, 1f);
+                AddVFXCount = addVFX.Count;
+            }
+        }
 
+        if (subVFX.Count != subVFXCount)
+        {
+            foreach (GameObject p in subVFX)
+            {
+                p.GetComponent<PointsVFXManager>().targetPosition += new Vector2(0, 1f);
+                subVFXCount = subVFX.Count;
+            }
+        }
+
+        if (rerollVFX.Count != rerollVFXCount)
+        {
+            foreach (GameObject p in rerollVFX)
+            {
+                p.GetComponent<PointsVFXManager>().targetPosition += new Vector2(0, 1f);
+                rerollVFXCount = rerollVFX.Count;
+            }
+        }
 
 
     }
